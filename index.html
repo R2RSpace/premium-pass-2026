@@ -3,440 +3,395 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Undangan Eksklusif Google One AI Premium</title>
-    
-    <meta property="og:title" content="Undangan: 4 Bulan Gemini Advanced Gratis">
+    <title>Undangan Eksklusif Google AI Pro</title>
+
+    <meta property="og:title" content="Undangan: 4 Bulan Google AI Pro Gratis">
     <meta property="og:description" content="Ridho Eka Putra mengundang Anda untuk mencoba model AI tercanggih dari Google tanpa biaya.">
     <meta name="theme-color" content="#f3f6fc" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#131314" media="(prefers-color-scheme: dark)">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Display:wght@400&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Google+Sans+Display:wght@300;400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
-        /* ─── MD3 Design Tokens ─────────────────────────────────────── */
+        /* ─── Design Tokens ──────────────────────────────────────────── */
         :root {
             /* Surface */
-            --md-sys-color-surface:            #f3f6fc;
-            --md-sys-color-surface-container:  #ffffff;
-            --md-sys-color-surface-variant:    #e8eaed;
+            --sur-bg:          #f0f4fc;
+            --sur-card:        #ffffff;
+            --sur-elevated:    #f8faff;
 
-            /* Primary */
-            --md-sys-color-primary:            #0b57d0;
-            --md-sys-color-primary-hover:      #0842a0;
-            --md-sys-color-on-primary:         #ffffff;
-            --md-sys-color-primary-container:  #e8f0fe;
-            --md-sys-color-on-primary-container: #041e49;
+            /* Brand */
+            --pri:             #1a6cf5;
+            --pri-hover:       #0d52d4;
+            --pri-fg:          #ffffff;
+            --pri-tint:        #e8f0fe;
+            --pri-tint-fg:     #002785;
 
-            /* Text */
-            --md-sys-color-on-surface:         #1f1f1f;
-            --md-sys-color-on-surface-variant: #444746;
-            --md-sys-color-outline:            #747775;
-            --md-sys-color-outline-variant:    #c4c7c5;
+            /* Content */
+            --fg-high:         #1a1c1e;
+            --fg-med:          #43474e;
+            --fg-low:          #73777f;
+            --fg-strike:       #9aa0a6; /* Warna coretan harga */
 
-            /* Elevation (MD3 shadow tokens) */
-            --md-sys-elevation-1: 0 1px 2px 0 rgba(0,0,0,.3), 0 1px 3px 1px rgba(0,0,0,.15);
-            --md-sys-elevation-2: 0 1px 2px 0 rgba(0,0,0,.3), 0 2px 6px 2px rgba(0,0,0,.15);
+            /* Borders */
+            --border-subtle:   rgba(26,28,30,.08);
+            --border-muted:    rgba(26,28,30,.06);
+
+            /* Shadows */
+            --shadow-xs:  0 1px 3px rgba(26,28,30,.10), 0 1px 2px rgba(26,28,30,.06);
+            --shadow-sm:  0 2px 8px rgba(26,28,30,.10), 0 1px 3px rgba(26,28,30,.07);
+            --shadow-md:  0 4px 16px rgba(26,28,30,.10), 0 2px 6px rgba(26,28,30,.06);
+
+            /* Radius */
+            --r-pill:  999px;
+            --r-card:  24px;
+            --r-inner: 12px;
+
+            /* Spacing rhythm (8px base) */
+            --sp-2:  2px;
+            --sp-4:  4px;
+            --sp-6:  6px;
+            --sp-8:  8px;
+            --sp-10: 10px;
+            --sp-12: 12px;
+            --sp-16: 16px;
+            --sp-20: 20px;
+            --sp-24: 24px;
+            --sp-28: 28px;
+            --sp-32: 32px;
+            --sp-40: 40px;
+            --sp-48: 48px;
 
             /* Motion */
-            --md-sys-motion-easing-standard:         cubic-bezier(.2,0,0,1);
-            --md-sys-motion-easing-emphasized:        cubic-bezier(.05,.7,.1,1);
-            --md-sys-motion-duration-short2:          100ms;
-            --md-sys-motion-duration-medium2:         300ms;
-            --md-sys-motion-duration-long2:           500ms;
-
-            /* Specific */
-            --logo-text-color: #5f6368;
-            --card-border:     rgba(0,0,0,.06);
+            --ease-out: cubic-bezier(.05,.7,.1,1);
+            --ease-std: cubic-bezier(.2,0,0,1);
         }
 
         @media (prefers-color-scheme: dark) {
             :root {
-                --md-sys-color-surface:            #131314;
-                --md-sys-color-surface-container:  #1e1e1e;
-                --md-sys-color-surface-variant:    #444746;
-
-                --md-sys-color-primary:            #a8c7fa;
-                --md-sys-color-primary-hover:      #d3e3fd;
-                --md-sys-color-on-primary:         #062e6f;
-                --md-sys-color-primary-container:  #004a77;
-                --md-sys-color-on-primary-container: #c2e7ff;
-
-                --md-sys-color-on-surface:         #e3e3e3;
-                --md-sys-color-on-surface-variant: #c4c7c5;
-                --md-sys-color-outline:            #8e918f;
-                --md-sys-color-outline-variant:    #444746;
-
-                --md-sys-elevation-1: 0 1px 2px 0 rgba(0,0,0,.6), 0 1px 3px 1px rgba(0,0,0,.4);
-                --md-sys-elevation-2: 0 1px 2px 0 rgba(0,0,0,.6), 0 2px 6px 2px rgba(0,0,0,.4);
-
-                --logo-text-color: #c4c7c5;
-                --card-border:     rgba(255,255,255,.08);
+                --sur-bg:          #0d0e10;
+                --sur-card:        #18191b;
+                --sur-elevated:    #1e2022;
+                --pri:             #aac7ff;
+                --pri-hover:       #d0e3ff;
+                --pri-fg:          #002e6e;
+                --pri-tint:        #003170;
+                --pri-tint-fg:     #d0e3ff;
+                --fg-high:         #e2e3e8;
+                --fg-med:          #a8abb3;
+                --fg-low:          #70737a;
+                --fg-strike:       #5f6368;
+                --border-subtle:   rgba(255,255,255,.09);
+                --border-muted:    rgba(255,255,255,.06);
+                --shadow-xs:  0 1px 3px rgba(0,0,0,.5);
+                --shadow-sm:  0 2px 8px rgba(0,0,0,.45);
+                --shadow-md:  0 4px 16px rgba(0,0,0,.45);
             }
         }
 
-        /* ─── Reset & Base ──────────────────────────────────────────── */
-        *, *::before, *::after { box-sizing: border-box; }
-
+        /* ─── Reset ──────────────────────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { -webkit-text-size-adjust: 100%; }
 
+        /* ─── Body ───────────────────────────────────────────────────── */
         body {
             font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
             -webkit-font-smoothing: antialiased;
-            margin: 0;
-            padding: 16px;
-            background-color: var(--md-sys-color-surface);
-            color: var(--md-sys-color-on-surface);
+            background-color: var(--sur-bg);
+            color: var(--fg-high);
+            min-height: 100svh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            min-height: 100svh;
-            gap: 0;
+            justify-content: center;
+            padding: var(--sp-16);
+            /* subtle dot grid */
+            background-image: radial-gradient(circle, rgba(26,108,245,.07) 1px, transparent 1px);
+            background-size: 28px 28px;
         }
 
-        /* ─── Page entrance animation ───────────────────────────────── */
+        /* ─── Entrance animation ──────────────────────────────────────── */
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(16px); }
+            from { opacity: 0; transform: translateY(14px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* ─── Card ──────────────────────────────────────────────────── */
-        .card-container {
-            background-color: var(--md-sys-color-surface-container);
-            border-radius: 28px;             /* MD3 extra-large shape */
+        /* ─── Card ───────────────────────────────────────────────────── */
+        .card {
+            background: var(--sur-card);
+            border-radius: var(--r-card);
             width: 100%;
-            max-width: 400px;
-            padding: 40px 32px 36px;
-            text-align: center;
-            /* MD3 Elevation level 1 tinted */
-            box-shadow: var(--md-sys-elevation-1);
-            border: 1px solid var(--card-border);
+            max-width: 408px;
+            padding: var(--sp-32) var(--sp-28) var(--sp-28);
             display: flex;
             flex-direction: column;
             align-items: center;
-            animation: fadeUp var(--md-sys-motion-duration-long2)
-                       var(--md-sys-motion-easing-emphasized) both;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-subtle);
+            animation: fadeUp 480ms var(--ease-out) both;
         }
 
-        /* ─── Referrer badge ────────────────────────────────────────── */
-        .referrer-badge {
+        /* ─── Referrer badge ─────────────────────────────────────────── */
+        .badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            background-color: var(--md-sys-color-primary-container);
-            color: var(--md-sys-color-on-primary-container);
-            padding: 6px 14px 6px 10px;
-            border-radius: 20px;          /* pill = full radius */
+            gap: var(--sp-6);
+            background: var(--pri-tint);
+            color: var(--pri-tint-fg);
+            padding: var(--sp-6) var(--sp-12) var(--sp-6) var(--sp-10);
+            border-radius: var(--r-pill);
             font-size: 12px;
             font-weight: 500;
-            line-height: 16px;
-            letter-spacing: .1px;
-            margin-bottom: 28px;
-            animation: fadeUp var(--md-sys-motion-duration-long2)
-                       var(--md-sys-motion-easing-emphasized) 60ms both;
+            letter-spacing: .2px;
+            line-height: 1;
+            margin-bottom: var(--sp-24);
+            animation: fadeUp 480ms var(--ease-out) 50ms both;
+        }
+        .badge svg {
+            width: 14px; height: 14px; flex-shrink: 0;
+            fill: var(--pri-tint-fg);
         }
 
-        /* Person icon inside badge */
-        .badge-icon {
-            width: 16px;
-            height: 16px;
-            flex-shrink: 0;
-            fill: var(--md-sys-color-on-primary-container);
+        /* ─── Gemini star ────────────────────────────────────────────── */
+        .star-wrap {
+            position: relative;
+            width: 52px; height: 52px;
+            margin-bottom: var(--sp-16);
+            animation: fadeUp 480ms var(--ease-out) 90ms both;
         }
-
-        /* ─── Google One lockup ─────────────────────────────────────── */
-        .google-logo-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;                     /* 4dp between wordmark & "One" */
-            margin-bottom: 28px;
-            animation: fadeUp var(--md-sys-motion-duration-long2)
-                       var(--md-sys-motion-easing-emphasized) 100ms both;
+        .star-svg {
+            width: 100%; height: 100%;
+            animation: starPulse 3.2s ease-in-out infinite alternate;
+            filter: drop-shadow(0 4px 12px rgba(66,133,244,.35));
         }
-
-        /* "One" label — Google Sans Medium, exactly 18sp */
-        .google-one-label {
-            font-family: 'Google Sans', sans-serif;
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 24px;
-            color: var(--logo-text-color);
-            letter-spacing: .25px;
+        @keyframes starPulse {
+            from { transform: scale(.93); filter: drop-shadow(0 3px 10px rgba(66,133,244,.25)); }
+            to   { transform: scale(1.05); filter: drop-shadow(0 5px 18px rgba(155,114,203,.45)); }
         }
-
-        /* ─── Gemini star ───────────────────────────────────────────── */
-        /*
-         * The Gemini logomark is a 4-pointed star constructed from two
-         * overlapping ellipses (rotated 90° relative to each other) joined
-         * at four tangent points. The SVG path below mirrors the production
-         * asset exactly:  two vertical arcs + two horizontal arcs,
-         * forming the characteristic "sparkle" silhouette.
-         *
-         * Key properties:
-         *  • Exact cubic-bezier control handles as published in brand guide
-         *  • LinearGradient: 4285F4 → 9B72CB → D96570 → F4B400 (0°→135°)
-         *  • No stroke. Pure fill.
-         */
-        .gemini-star-wrapper {
-            width: 64px;
-            height: 64px;
-            margin-bottom: 20px;
-            animation: fadeUp var(--md-sys-motion-duration-long2)
-                       var(--md-sys-motion-easing-emphasized) 140ms both;
-        }
-
-        .gemini-star {
-            width: 100%;
-            height: 100%;
-            animation: geminiPulse 3s var(--md-sys-motion-easing-standard) infinite alternate;
-            will-change: transform, opacity;
-        }
-
-        @keyframes geminiPulse {
-            0%   { transform: scale(0.94); filter: brightness(.92); }
-            100% { transform: scale(1.04); filter: brightness(1.04); }
-        }
-
-        /* ─── Shimmer overlay (matches Google's loading shimmer) ─────── */
-        .gemini-star-wrapper::after {
+        /* shimmer overlay */
+        .star-wrap::after {
             content: '';
             position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                105deg,
-                transparent 30%,
-                rgba(255,255,255,.35) 50%,
-                transparent 70%
+            inset: -4px;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0%, rgba(255,255,255,.18) 25%,
+                transparent 50%, rgba(255,255,255,.12) 75%,
+                transparent 100%
             );
-            background-size: 200% 100%;
             border-radius: 50%;
-            animation: shimmer 4s ease-in-out 800ms infinite;
+            animation: starSpin 5s linear infinite;
             pointer-events: none;
         }
-        .gemini-star-wrapper { position: relative; }
+        @keyframes starSpin { to { transform: rotate(360deg); } }
 
-        @keyframes shimmer {
-            0%   { background-position: 200% center; opacity: 0; }
-            10%  { opacity: 1; }
-            60%  { background-position: -200% center; opacity: 1; }
-            70%  { opacity: 0; }
-            100% { background-position: -200% center; opacity: 0; }
+        /* ─── Hero text block ────────────────────────────────────────── */
+        .hero-eyebrow {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            color: var(--fg-low);
+            margin-bottom: var(--sp-6);
+            animation: fadeUp 480ms var(--ease-out) 120ms both;
         }
 
-        /* ─── Heading ───────────────────────────────────────────────── */
-        h1 {
-            /* Google uses "Google Sans Display" for large headings in Gemini UI */
+        .hero-price {
             font-family: 'Google Sans Display', 'Google Sans', sans-serif;
-            font-weight: 400;             /* Regular — Google avoids bold in hero */
-            font-size: 28px;              /* 28sp matches Google One invite spec */
-            line-height: 1.25;
-            letter-spacing: -.25px;
-            margin: 0 0 16px;
-            color: var(--md-sys-color-on-surface);
-            animation: fadeUp var(--md-sys-motion-duration-long2)
-                       var(--md-sys-motion-easing-emphasized) 180ms both;
+            font-weight: 500;
+            font-size: 38px;
+            line-height: 1.15;
+            letter-spacing: -.5px;
+            color: var(--fg-high);
+            margin-bottom: var(--sp-4);
+            animation: fadeUp 480ms var(--ease-out) 145ms both;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .hero-price-original {
+            font-size: 18px;
+            color: var(--fg-strike);
+            text-decoration: line-through;
+            font-weight: 400;
+            margin-bottom: -4px;
         }
 
-        .highlight-text {
-            /* Exact Google Gemini gradient as per brand asset */
+        .hero-sub {
+            font-size: 13px;
+            color: var(--fg-low);
+            margin-bottom: var(--sp-20);
+            animation: fadeUp 480ms var(--ease-out) 165ms both;
+            text-align: center;
+        }
+
+        /* gradient animated text */
+        .g-text {
             background: linear-gradient(
-                74deg,
-                #4285f4  0%,
-                #9b72cb  9%,
-                #d96570  20%,
-                #d96570  24%,
-                #9b72cb  35%,
-                #4285f4  44%,
-                #9b72cb  50%,
-                #d96570  56%,
-                #f4b400  75%,
-                #f4b400  100%
+                90deg,
+                #4285f4 0%, #9b72cb 25%, #d96570 50%, #f4b400 75%, #4285f4 100%
             );
-            background-size: 400% 400%;
+            background-size: 300% 100%;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 500;
-            animation: gradientShift 6s ease infinite;
+            font-weight: 600;
+            animation: gShift 5s ease infinite;
+        }
+        @keyframes gShift {
+            0%, 100% { background-position: 0% center; }
+            50%       { background-position: 100% center; }
         }
 
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50%       { background-position: 100% 50%; }
-        }
-
-        /* ─── Description ────────────────────────────────────────────── */
-        .description {
-            font-size: 14px;
-            line-height: 1.571;           /* 22/14 — MD3 body-medium */
-            color: var(--md-sys-color-on-surface-variant);
-            margin: 0 0 32px;
-            padding: 0 4px;
-            animation: fadeUp var(--md-sys-motion-duration-long2)
-                       var(--md-sys-motion-easing-emphasized) 220ms both;
-        }
-
-        /* ─── CTA Button — MD3 Filled Button spec ─────────────────── */
-        /*
-         * MD3 Filled Button:
-         *  height:         40dp
-         *  border-radius:  20dp (full)
-         *  horizontal pad: 24dp
-         *  label:          label-large (14sp, Medium, 0.1px tracking)
-         *  state layer:    primary-hover = 8% on-primary tint
-         */
-        .cta-button {
+        /* ─── CTA button ─────────────────────────────────────────────── */
+        .cta {
             position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            gap: var(--sp-8);
             overflow: hidden;
-
-            background-color: var(--md-sys-color-primary);
-            color: var(--md-sys-color-on-primary);
-
             width: 100%;
-            height: 40px;
-            border-radius: 20px;
-            padding: 0 24px;
+            height: 44px;
+            padding: 0 var(--sp-24);
+            border-radius: var(--r-pill);
             border: none;
             cursor: pointer;
             text-decoration: none;
-
-            /* MD3 Label Large */
-            font-family: 'Google Sans', 'Roboto', sans-serif;
+            background: var(--pri);
+            color: var(--pri-fg);
+            font-family: 'Google Sans', sans-serif;
             font-size: 14px;
             font-weight: 500;
-            line-height: 20px;
-            letter-spacing: .1px;
-
-            /* MD3 Transition: 200ms standard */
-            transition: background-color var(--md-sys-motion-duration-medium2)
-                        var(--md-sys-motion-easing-standard),
-                        box-shadow        var(--md-sys-motion-duration-medium2)
-                        var(--md-sys-motion-easing-standard);
-
-            animation: fadeUp var(--md-sys-motion-duration-long2)
-                       var(--md-sys-motion-easing-emphasized) 260ms both;
+            letter-spacing: .25px;
+            transition: box-shadow 250ms var(--ease-std), background-color 150ms var(--ease-std);
+            animation: fadeUp 480ms var(--ease-out) 185ms both;
             -webkit-tap-highlight-color: transparent;
         }
-
-        /* State layer (hover) */
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: var(--md-sys-color-on-primary);
-            border-radius: inherit;
-            opacity: 0;
-            transition: opacity var(--md-sys-motion-duration-short2)
-                        var(--md-sys-motion-easing-standard);
+        .cta-icon {
+            width: 16px; height: 16px; flex-shrink: 0;
+            fill: var(--pri-fg);
+            transition: transform 250ms var(--ease-out);
         }
+        .cta::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: var(--pri-fg);
+            opacity: 0;
+            transition: opacity 120ms var(--ease-std);
+        }
+        .cta:hover { box-shadow: var(--shadow-sm); }
+        .cta:hover::before { opacity: .08; }
+        .cta:hover .cta-icon { transform: translateX(2px); }
+        .cta:active::before { opacity: .14; }
+        .cta:focus-visible { outline: 3px solid var(--pri); outline-offset: 2px; }
 
-        .cta-button:hover::before  { opacity: .08; }
-        .cta-button:active::before { opacity: .12; }
-
-        /* Ripple element */
+        /* ripple */
         .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255,255,255,.35);
+            position: absolute; border-radius: 50%;
+            background: rgba(255,255,255,.3);
             transform: scale(0);
-            animation: rippleAnim 600ms linear;
+            animation: rippleOut 550ms linear forwards;
             pointer-events: none;
         }
-        @keyframes rippleAnim {
-            to { transform: scale(4); opacity: 0; }
+        @keyframes rippleOut { to { transform: scale(4); opacity: 0; } }
+
+        /* ─── Divider ────────────────────────────────────────────────── */
+        .rule {
+            width: 100%; height: 1px;
+            background: var(--border-subtle);
         }
 
-        /* Elevation on hover (MD3 Filled: level 1 → level 2) */
-        .cta-button:hover {
-            box-shadow: var(--md-sys-elevation-2);
-        }
-
-        /* Focus ring — MD3 uses 3dp outline offset */
-        .cta-button:focus-visible {
-            outline: 3px solid var(--md-sys-color-primary);
-            outline-offset: 2px;
-        }
-
-        /* Dark mode: button bg becomes primary-container */
-        @media (prefers-color-scheme: dark) {
-            .cta-button {
-                background-color: var(--md-sys-color-primary);
-                color: var(--md-sys-color-on-primary);
-            }
-        }
-
-        /* ─── Divider ─────────────────────────────────────────────── */
-        .divider {
+        /* ─── "Ideal untuk" section ──────────────────────────────────── */
+        .ideal {
             width: 100%;
-            height: 1px;
-            background-color: var(--card-border);
-            margin: 24px 0 0;
-            animation: fadeUp var(--md-sys-motion-duration-long2)
-                       var(--md-sys-motion-easing-emphasized) 300ms both;
+            padding: var(--sp-16) 0 var(--sp-4);
+        }
+        .ideal-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .6px;
+            text-transform: uppercase;
+            color: var(--fg-low);
+            margin-bottom: var(--sp-6);
+        }
+        .ideal-body {
+            font-size: 13px;
+            color: var(--fg-med);
+            line-height: 1.55;
         }
 
-        /* ─── Features list (bonus fidelity detail) ──────────────── */
-        .features-list {
+        /* ─── Features list ──────────────────────────────────────────── */
+        .features {
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 20px;
-            text-align: left;
-            animation: fadeUp var(--md-sys-motion-duration-long2)
-                       var(--md-sys-motion-easing-emphasized) 320ms both;
+            list-style: none;
+            padding: var(--sp-4) 0 0;
         }
 
-        .feature-item {
+        .fi {
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            font-size: 13px;
-            line-height: 1.538;
-            color: var(--md-sys-color-on-surface-variant);
+            gap: var(--sp-12);
+            padding: var(--sp-12) 0;
+            border-bottom: 1px solid var(--border-muted);
         }
+        .fi:last-child { border-bottom: none; padding-bottom: 0; }
 
-        .feature-icon {
-            width: 16px;
-            height: 16px;
+        /* icon container — fixed 32×32, centered, light tinted bg */
+        .fi-icon {
+            width: 32px; height: 32px;
             flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--pri-tint);
+            border-radius: var(--r-inner);
             margin-top: 1px;
         }
+        .fi-icon svg {
+            width: 16px; height: 16px;
+        }
 
-        /* ─── Footer ─────────────────────────────────────────────── */
+        .fi-body {}
+        .fi-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--fg-high);
+            line-height: 1.4;
+            margin-bottom: var(--sp-2);
+        }
+        .fi-desc {
+            font-size: 12px;
+            color: var(--fg-med);
+            line-height: 1.55;
+        }
+
+        /* ─── Footer ─────────────────────────────────────────────────── */
         .footer {
             width: 100%;
-            max-width: 400px;
+            max-width: 408px;
             text-align: center;
             font-size: 11px;
-            line-height: 1.454;
-            color: var(--md-sys-color-on-surface-variant);
-            margin-top: 20px;
-            animation: fadeUp var(--md-sys-motion-duration-long2)
-                       var(--md-sys-motion-easing-emphasized) 360ms both;
+            line-height: 1.6;
+            color: var(--fg-low);
+            margin-top: var(--sp-16);
         }
-
-        .footer p { margin: 4px 0; }
-
-        .footer a {
-            color: var(--md-sys-color-primary);
-            text-decoration: none;
-        }
+        .footer p + p { margin-top: var(--sp-2); }
+        .footer a { color: var(--pri); text-decoration: none; }
         .footer a:hover { text-decoration: underline; }
 
-        /* ─── Responsive fine-tuning ─────────────────────────────── */
-        @media (max-width: 360px) {
-            .card-container { padding: 32px 20px 28px; }
-            h1 { font-size: 24px; }
-        }
+        /* ─── Spacing between card sections ─────────────────────────── */
+        .gap-12 { margin-top: var(--sp-12); }
+        .gap-16 { margin-top: var(--sp-16); }
 
-        /* Reduce motion */
+        /* ─── Responsive ─────────────────────────────────────────────── */
+        @media (max-width: 360px) {
+            .card { padding: var(--sp-24) var(--sp-20) var(--sp-24); }
+            .hero-price { font-size: 30px; }
+        }
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: .01ms !important;
@@ -448,158 +403,231 @@
 </head>
 <body>
 
-    <main class="card-container" role="main">
+<main class="card" role="main">
 
-        <!-- Referrer badge with person icon -->
-        <div class="referrer-badge" aria-label="Undangan dari Ridho Eka Putra">
-            <svg class="badge-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M10 10a3.75 3.75 0 1 0 0-7.5A3.75 3.75 0 0 0 10 10Zm-5.833 6.667c0-3.222 2.611-5.834 5.833-5.834s5.833 2.612 5.833 5.834H4.167Z"/>
-            </svg>
-            Undangan dari Ridho Eka Putra
-        </div>
+    <div class="badge" aria-label="Undangan dari Ridho Eka Putra">
+        <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M10 10a3.75 3.75 0 1 0 0-7.5A3.75 3.75 0 0 0 10 10Zm-5.833 6.667c0-3.222 2.611-5.834 5.833-5.834s5.833 2.612 5.833 5.834H4.167Z"/>
+        </svg>
+        Undangan dari Ridho Eka Putra
+    </div>
 
-        <!-- Google One wordmark lockup -->
-        <div class="google-logo-wrapper" aria-label="Google One">
-            <!--
-                Google wordmark SVG — redrawn from official brand guide.
-                Each letter is precisely shaped; fill colours match the
-                canonical Google brand palette.
-            -->
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 272 92"
-                height="22"
-                role="img"
-                aria-label="Google"
-            >
-                <!--  G  -->
-                <path fill="#4285F4" d="M115.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18C71.25 34.32 81.24 25 93.5 25s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44S80.99 39.2 80.99 47.18c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z"/>
-                <!--  o  -->
-                <path fill="#EA4335" d="M163.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18c0-12.85 9.99-22.18 22.25-22.18s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44s-12.51 5.46-12.51 13.44c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z"/>
-                <!--  o  -->
-                <path fill="#FBBC05" d="M209.75 26.34v39.82c0 16.38-9.66 23.07-21.08 23.07-10.75 0-17.22-7.19-19.66-13.07l8.48-3.53c1.51 3.61 5.21 7.87 11.17 7.87 7.31 0 11.84-4.51 11.84-13v-3.19h-.34c-2.18 2.69-6.38 5.04-11.68 5.04-11.09 0-21.25-9.66-21.25-22.09 0-12.52 10.16-22.26 21.25-22.26 5.29 0 9.49 2.35 11.68 4.96h.34v-3.61h9.25zm-8.56 20.92c0-7.81-5.21-13.52-11.84-13.52-6.72 0-12.35 5.71-12.35 13.52 0 7.73 5.63 13.36 12.35 13.36 6.63 0 11.84-5.63 11.84-13.36z"/>
-                <!--  g  -->
-                <path fill="#4285F4" d="M225 3v65h-9.5V3h9.5z"/>
-                <!--  l  -->
-                <path fill="#34A853" d="M262.02 54.48l7.56 5.04c-2.44 3.61-8.32 9.83-18.48 9.83-12.6 0-22.01-9.74-22.01-22.18 0-13.19 9.49-22.18 20.92-22.18 11.51 0 17.14 9.16 18.98 14.11l1.01 2.52-29.65 12.28c2.27 4.45 5.8 6.72 10.75 6.72 4.96 0 8.4-2.44 10.92-6.14zm-23.27-7.98 19.82-8.23c-1.09-2.77-4.37-4.7-8.23-4.7-4.95 0-11.84 4.37-11.59 12.93z"/>
-                <!--  e  -->
-                <path fill="#EA4335" d="M34.93 40.96v-9.41h31.71c.31 1.64.47 3.58.47 5.68 0 7.06-1.93 15.79-8.15 22.01-6.05 6.3-13.78 9.66-24.03 9.66C15.01 68.9.06 54.41.06 34.49.06 14.57 15.01.08 34.93.08c10.5 0 17.98 4.12 23.6 9.49l-6.64 6.64c-4.03-3.78-9.49-6.72-16.96-6.72-13.86 0-24.7 11.17-24.7 25.03 0 13.86 10.84 25.03 24.7 25.03 8.99 0 14.11-3.61 17.39-6.89 2.66-2.66 4.41-6.46 5.1-11.67H34.93z"/>
-            </svg>
+    <div class="star-wrap" role="img" aria-label="Gemini AI">
+        <svg class="star-svg" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 0C14 7.732 7.732 14 0 14C7.732 14 14 20.268 14 28C14 20.268 20.268 14 28 14C20.268 14 14 7.732 14 0Z" fill="url(#gstar)"/>
+            <defs>
+                <linearGradient id="gstar" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%"   stop-color="#4285F4"/>
+                    <stop offset="33%"  stop-color="#9B72CB"/>
+                    <stop offset="66%"  stop-color="#D96570"/>
+                    <stop offset="100%" stop-color="#F4B400"/>
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
 
-            <span class="google-one-label" aria-hidden="true">One</span>
-        </div>
+    <p class="hero-eyebrow">Google AI Pro</p>
+    <p class="hero-price">
+        <span class="hero-price-original">Rp&nbsp;1.236.000</span>
+        Rp&nbsp;0
+    </p>
+    <p class="hero-sub"><span class="g-text">Kupon diterapkan!</span> Akses gratis untuk Anda</p>
 
-        <!-- Gemini star logomark -->
-        <div class="gemini-star-wrapper" role="img" aria-label="Gemini AI">
-            <svg
-                class="gemini-star"
-                viewBox="0 0 28 28"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <!--
-                    Gemini star — 4-pointed sparkle.
-                    Path is the exact production shape: each arm is a smooth
-                    cubic bezier that tapers to a point, then flares back.
-                    Control-point ratios: 0.47 × arm-length (published spec).
-                -->
-                <path
-                    d="M14 0
-                       C14 7.732 7.732 14 0 14
-                       C7.732 14 14 20.268 14 28
-                       C14 20.268 20.268 14 28 14
-                       C20.268 14 14 7.732 14 0Z"
-                    fill="url(#g-star-grad)"
-                />
-                <defs>
-                    <linearGradient
-                        id="g-star-grad"
-                        x1="0" y1="0" x2="28" y2="28"
-                        gradientUnits="userSpaceOnUse"
-                    >
-                        <stop offset="0%"   stop-color="#4285F4"/>
-                        <stop offset="33%"  stop-color="#9B72CB"/>
-                        <stop offset="66%"  stop-color="#D96570"/>
-                        <stop offset="100%" stop-color="#F4B400"/>
-                    </linearGradient>
-                </defs>
-            </svg>
-        </div>
+    <a href="https://g.co/g1referral/EWNT4RD8" class="cta" target="_blank" rel="noopener noreferrer" id="cta">
+        Dapatkan Google AI Pro
+        <svg class="cta-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M4.167 10h11.666M10.833 5.833 15 10l-4.167 4.167" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+    </a>
 
-        <!-- Hero heading -->
-        <h1>
-            Dapatkan <span class="highlight-text">Gemini Advanced</span><br>tanpa biaya.
-        </h1>
+    <div class="rule gap-16"></div>
+    <div class="ideal">
+        <p class="ideal-label">Ideal untuk</p>
+        <p class="ideal-body">Pengguna tingkat lanjut, kreator, dan pemecah masalah yang perlu akses lebih luas ke AI Google.</p>
+    </div>
+    <div class="rule"></div>
 
-        <!-- Description -->
-        <p class="description">
-            Ridho Eka Putra mengundang Anda untuk mencoba Google One AI Premium — akses ke model AI kami yang paling mumpuni, penyimpanan 2&nbsp;TB, dan fitur eksklusif selama 4&nbsp;bulan.
-        </p>
+    <ul class="features" aria-label="Semua fitur yang disertakan">
 
-        <!-- CTA -->
-        <a
-            href="https://g.co/g1referral/EWNT4RD8"
-            class="cta-button"
-            target="_blank"
-            rel="noopener noreferrer"
-            id="cta"
-        >
-            Mulai uji coba gratis
-        </a>
-
-        <!-- Divider + micro feature list (production pages have this) -->
-        <div class="divider" aria-hidden="true"></div>
-
-        <ul class="features-list" aria-label="Fitur yang disertakan">
-            <li class="feature-item">
-                <svg class="feature-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2Zm3.707 6.293-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 1 1 1.414-1.414L9 10.086l3.293-3.293a1 1 0 0 1 1.414 1.414Z" fill="var(--md-sys-color-primary)"/>
+        <li class="fi">
+            <div class="fi-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C12 7.523 7.523 12 2 12C7.523 12 12 16.477 12 22C12 16.477 16.477 12 22 12C16.477 12 12 7.523 12 2Z" fill="url(#iGemini)"/>
+                    <defs>
+                        <linearGradient id="iGemini" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#4285F4"/>
+                            <stop offset="100%" stop-color="#9B72CB"/>
+                        </linearGradient>
+                    </defs>
                 </svg>
-                <span>Akses prioritas ke Gemini 1.5 Pro &amp; model terbaru</span>
-            </li>
-            <li class="feature-item">
-                <svg class="feature-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2Zm3.707 6.293-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 1 1 1.414-1.414L9 10.086l3.293-3.293a1 1 0 0 1 1.414 1.414Z" fill="var(--md-sys-color-primary)"/>
-                </svg>
-                <span>Penyimpanan cloud Google One 2&nbsp;TB</span>
-            </li>
-            <li class="feature-item">
-                <svg class="feature-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2Zm3.707 6.293-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 1 1 1.414-1.414L9 10.086l3.293-3.293a1 1 0 0 1 1.414 1.414Z" fill="var(--md-sys-color-primary)"/>
-                </svg>
-                <span>Gemini di Gmail, Docs, dan aplikasi Workspace</span>
-            </li>
-        </ul>
-    </main>
+            </div>
+            <div class="fi-body">
+                <p class="fi-title">Aplikasi Gemini</p>
+                <p class="fi-desc">Akses lebih tinggi ke Gemini 3.1 Pro, Deep Research, pembuatan gambar dengan Imagen, dan video dengan Veo 3.1.</p>
+            </div>
+        </li>
 
-    <!-- Footer -->
-    <footer class="footer" role="contentinfo">
-        <p>Penawaran uji coba 4 bulan berlaku untuk pengguna baru Google One AI Premium.</p>
-        <p>Metode pembayaran diperlukan. Anda tidak akan ditagih sebelum uji coba berakhir.</p>
-        <p>
-            <a href="https://one.google.com/terms-of-service" target="_blank" rel="noopener noreferrer">Persyaratan Layanan</a>
-            &nbsp;·&nbsp;
-            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Kebijakan Privasi</a>
-        </p>
-    </footer>
+        <li class="fi">
+            <div class="fi-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3" y="5" width="18" height="14" rx="2.5" stroke="var(--pri)" stroke-width="1.7" fill="none"/>
+                    <path d="M9.5 9l5 3-5 3V9z" fill="var(--pri)"/>
+                </svg>
+            </div>
+            <div class="fi-body">
+                <p class="fi-title">Flow</p>
+                <p class="fi-desc">Alat Pembuatan Film bertenaga AI untuk membuat adegan dan cerita sinematik dengan Veo 3.1.</p>
+            </div>
+        </li>
 
-    <script>
-        /* ─── MD3 Ripple effect on CTA ──────────────────────────────── */
-        document.querySelectorAll('.cta-button').forEach(btn => {
-            btn.addEventListener('pointerdown', e => {
-                const rect = btn.getBoundingClientRect();
-                const r = document.createElement('span');
-                r.className = 'ripple';
-                const size = Math.max(rect.width, rect.height);
-                r.style.cssText = `
-                    width:${size}px; height:${size}px;
-                    left:${e.clientX - rect.left - size/2}px;
-                    top:${e.clientY - rect.top - size/2}px;
-                `;
-                btn.appendChild(r);
-                r.addEventListener('animationend', () => r.remove());
-            });
+        <li class="fi">
+            <div class="fi-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="11" r="7" stroke="var(--pri)" stroke-width="1.7" fill="none"/>
+                    <path d="M12 7.5c0 0-2.5 2-2.5 4a2.5 2.5 0 0 0 5 0c0-2-2.5-4-2.5-4z" stroke="var(--pri)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    <line x1="12" y1="18" x2="12" y2="21" stroke="var(--pri)" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="fi-body">
+                <p class="fi-title">Whisk</p>
+                <p class="fi-desc">Pembuatan video dari gambar dengan akses lebih tinggi ke Veo 3.</p>
+            </div>
+        </li>
+
+        <li class="fi">
+            <div class="fi-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="9" stroke="var(--pri)" stroke-width="1.7" fill="none"/>
+                    <path d="M12 3C12 7.97 7.97 12 3 12C7.97 12 12 16.03 12 21C12 16.03 16.03 12 21 12C16.03 12 12 7.97 12 3Z" fill="var(--pri)"/>
+                </svg>
+            </div>
+            <div class="fi-body">
+                <p class="fi-title">1.000 kredit AI bulanan</p>
+                <p class="fi-desc">Poin AI untuk meningkatkan akses ke fitur AI Google tingkat lanjut.</p>
+            </div>
+        </li>
+
+        <li class="fi">
+            <div class="fi-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="11" cy="11" r="7" stroke="var(--pri)" stroke-width="1.7" fill="none"/>
+                    <path d="M16.5 16.5L21 21" stroke="var(--pri)" stroke-width="1.7" stroke-linecap="round"/>
+                    <path d="M11 8.5v5M8.5 11h5" stroke="var(--pri)" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="fi-body">
+                <p class="fi-title">Google Penelusuran</p>
+                <p class="fi-desc">Akses lebih tinggi ke model Gemini 3 Pro di Google Search dan fitur lainnya.</p>
+            </div>
+        </li>
+
+        <li class="fi">
+            <div class="fi-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4" y="3" width="16" height="18" rx="2.5" stroke="var(--pri)" stroke-width="1.7" fill="none"/>
+                    <path d="M8 8h8M8 11.5h8M8 15h5" stroke="var(--pri)" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="fi-body">
+                <p class="fi-title">NotebookLM</p>
+                <p class="fi-desc">Partner riset dengan Ringkasan Audio &amp; Video, Kuis, dan fitur premium lainnya.</p>
+            </div>
+        </li>
+
+        <li class="fi">
+            <div class="fi-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 7l8 5 8-5" stroke="var(--pri)" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+                    <rect x="3" y="6" width="18" height="13" rx="2.5" stroke="var(--pri)" stroke-width="1.7" fill="none"/>
+                </svg>
+            </div>
+            <div class="fi-body">
+                <p class="fi-title">Gemini di Gmail, Dokumen, Vids &amp; lainnya</p>
+                <p class="fi-desc">Akses Gemini langsung di seluruh aplikasi Google Workspace.</p>
+            </div>
+        </li>
+
+        <li class="fi">
+            <div class="fi-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 3L4 20h16L12 3z" stroke="var(--pri)" stroke-width="1.7" fill="none" stroke-linejoin="round"/>
+                    <path d="M12 9v5" stroke="var(--pri)" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="12" cy="16.5" r=".9" fill="var(--pri)"/>
+                </svg>
+            </div>
+            <div class="fi-body">
+                <p class="fi-title">Google Antigravity</p>
+                <p class="fi-desc">Batas tarif lebih tinggi untuk model agen di platform pengembangan agentic Google.</p>
+            </div>
+        </li>
+
+        <li class="fi">
+            <div class="fi-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="var(--pri)" stroke-width="1.7" fill="none"/>
+                    <path d="M12 22V12M3.27 6.96L12 12l8.73-5.04" stroke="var(--pri)" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="fi-body">
+                <p class="fi-title">Google Developer Program Premium</p>
+                <p class="fi-desc">Batas lebih tinggi untuk Gemini CLI, Code Assist, Jules, kredit Cloud, dan lainnya.</p>
+            </div>
+        </li>
+
+        <li class="fi">
+            <div class="fi-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 17.5A5.5 5.5 0 0 0 14.5 12H6a4 4 0 0 0 0 8h12.5a2 2 0 0 0 0-4H6" stroke="var(--pri)" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="fi-body">
+                <p class="fi-title">Penyimpanan 2 TB</p>
+                <p class="fi-desc">Total storage untuk Google Foto, Drive, dan Gmail.</p>
+            </div>
+        </li>
+
+    </ul>
+
+</main>
+
+<footer class="footer" role="contentinfo">
+    <p>Penawaran berlaku untuk pengguna baru Google AI Pro.</p>
+    <p>Metode pembayaran diperlukan. Tidak ditagih sebelum uji coba berakhir.</p>
+    <p style="margin-top:6px">
+        <a href="https://one.google.com/terms-of-service" target="_blank" rel="noopener noreferrer">Persyaratan Layanan</a>
+        &nbsp;·&nbsp;
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Kebijakan Privasi</a>
+    </p>
+</footer>
+
+<script>
+(function () {
+    /* Ripple on CTA */
+    document.querySelectorAll('.cta').forEach(btn => {
+        btn.addEventListener('pointerdown', e => {
+            const rect = btn.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const r = document.createElement('span');
+            r.className = 'ripple';
+            r.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - rect.left - size / 2}px;top:${e.clientY - rect.top - size / 2}px`;
+            btn.appendChild(r);
+            r.addEventListener('animationend', () => r.remove(), { once: true });
         });
-    </script>
+    });
+
+    /* Stagger feature items in */
+    const items = document.querySelectorAll('.fi');
+    items.forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(10px)';
+        el.style.transition = `opacity 380ms cubic-bezier(.05,.7,.1,1) ${220 + i * 30}ms, transform 380ms cubic-bezier(.05,.7,.1,1) ${220 + i * 30}ms`;
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        }));
+    });
+}());
+</script>
+
 </body>
 </html>
