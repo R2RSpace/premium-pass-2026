@@ -33,8 +33,6 @@
             --fg-high:         #1a1c1e;
             --fg-med:          #43474e;
             --fg-low:          #73777f;
-            /* [FIX] Kontras ditingkatkan agar lulus standar WCAG AA (4.5:1) di background putih */
-            --fg-strike:       #5f6368; 
 
             /* Borders */
             --border-subtle:   rgba(26,28,30,.08);
@@ -50,7 +48,7 @@
             --r-card:  24px;
             --r-inner: 12px;
 
-            /* Spacing */
+            /* Spacing rhythm (8px base) */
             --sp-2:  2px;
             --sp-4:  4px;
             --sp-6:  6px;
@@ -62,6 +60,8 @@
             --sp-24: 24px;
             --sp-28: 28px;
             --sp-32: 32px;
+            --sp-40: 40px;
+            --sp-48: 48px;
 
             /* Motion */
             --ease-out: cubic-bezier(.05,.7,.1,1);
@@ -81,8 +81,6 @@
                 --fg-high:         #e2e3e8;
                 --fg-med:          #a8abb3;
                 --fg-low:          #70737a;
-                /* [FIX] Kontras ideal untuk background gelap */
-                --fg-strike:       #9aa0a6; 
                 --border-subtle:   rgba(255,255,255,.09);
                 --border-muted:    rgba(255,255,255,.06);
                 --shadow-xs:  0 1px 3px rgba(0,0,0,.5);
@@ -94,13 +92,6 @@
         /* ─── Reset ──────────────────────────────────────────────────── */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { -webkit-text-size-adjust: 100%; }
-
-        /* ─── Screen Reader Only (Aksesibilitas) ─────────────────────── */
-        /* [FIX] Kelas khusus agar screen reader bisa membaca konteks tanpa merusak UI */
-        .sr-only {
-            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-            overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
-        }
 
         /* ─── Body ───────────────────────────────────────────────────── */
         body {
@@ -114,6 +105,7 @@
             align-items: center;
             justify-content: center;
             padding: var(--sp-16);
+            /* subtle dot grid */
             background-image: radial-gradient(circle, rgba(26,108,245,.07) 1px, transparent 1px);
             background-size: 28px 28px;
         }
@@ -124,6 +116,7 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
+        /* ─── Card ───────────────────────────────────────────────────── */
         .card {
             background: var(--sur-card);
             border-radius: var(--r-card);
@@ -138,6 +131,15 @@
             animation: fadeUp 480ms var(--ease-out) both;
         }
 
+        /* ─── Referrer badge ─────────────────────────────────────────── */
+        .badge-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--sp-4);
+            margin-bottom: var(--sp-24);
+            animation: fadeUp 480ms var(--ease-out) 50ms both;
+        }
         .badge {
             display: inline-flex;
             align-items: center;
@@ -147,17 +149,90 @@
             padding: var(--sp-6) var(--sp-12) var(--sp-6) var(--sp-10);
             border-radius: var(--r-pill);
             font-size: 12px;
-            font-weight: 500;
+            font-weight: 600;
             letter-spacing: .2px;
             line-height: 1;
-            margin-bottom: var(--sp-24);
-            animation: fadeUp 480ms var(--ease-out) 50ms both;
         }
         .badge svg {
             width: 14px; height: 14px; flex-shrink: 0;
             fill: var(--pri-tint-fg);
         }
+        .badge-sub {
+            font-size: 11px;
+            color: var(--fg-low);
+            letter-spacing: .1px;
+        }
 
+        /* ─── Coupon discount block ──────────────────────────────────── */
+        .coupon-block {
+            width: 100%;
+            background: var(--sur-elevated);
+            border: 1px dashed var(--border-subtle);
+            border-radius: var(--r-inner);
+            padding: var(--sp-12) var(--sp-16);
+            margin-bottom: var(--sp-20);
+            animation: fadeUp 480ms var(--ease-out) 165ms both;
+        }
+        .coupon-row {
+            display: flex;
+            align-items: center;
+            gap: var(--sp-8);
+            margin-bottom: var(--sp-8);
+        }
+        .coupon-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+            color: var(--fg-low);
+            margin-right: auto;
+        }
+        .coupon-original {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--fg-low);
+            text-decoration: line-through;
+            text-decoration-color: var(--fg-low);
+        }
+        .coupon-arrow {
+            font-size: 12px;
+            color: var(--fg-low);
+        }
+        .coupon-free {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a8a4a;
+            letter-spacing: -.2px;
+        }
+        @media (prefers-color-scheme: dark) {
+            .coupon-free { color: #4eca7e; }
+        }
+
+        /* progress bar */
+        .coupon-bar {
+            display: flex;
+            align-items: center;
+            gap: var(--sp-8);
+        }
+        .coupon-bar-fill {
+            display: block;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #4285f4, #9b72cb, #d96570, #f4b400);
+            border-radius: var(--r-pill);
+            background-size: 300% 100%;
+            animation: gShift 5s ease infinite;
+            flex-shrink: 0;
+            max-width: 64px;
+        }
+        .coupon-bar-text {
+            font-size: 11px;
+            color: var(--fg-low);
+            white-space: nowrap;
+            letter-spacing: .1px;
+        }
+
+        /* ─── Gemini star ────────────────────────────────────────────── */
         .star-wrap {
             position: relative;
             width: 52px; height: 52px;
@@ -173,16 +248,24 @@
             from { transform: scale(.93); filter: drop-shadow(0 3px 10px rgba(66,133,244,.25)); }
             to   { transform: scale(1.05); filter: drop-shadow(0 5px 18px rgba(155,114,203,.45)); }
         }
+        /* shimmer overlay */
         .star-wrap::after {
             content: '';
-            position: absolute; inset: -4px;
-            background: conic-gradient(from 0deg, transparent 0%, rgba(255,255,255,.18) 25%, transparent 50%, rgba(255,255,255,.12) 75%, transparent 100%);
+            position: absolute;
+            inset: -4px;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0%, rgba(255,255,255,.18) 25%,
+                transparent 50%, rgba(255,255,255,.12) 75%,
+                transparent 100%
+            );
             border-radius: 50%;
             animation: starSpin 5s linear infinite;
             pointer-events: none;
         }
         @keyframes starSpin { to { transform: rotate(360deg); } }
 
+        /* ─── Hero text block ────────────────────────────────────────── */
         .hero-eyebrow {
             font-size: 11px;
             font-weight: 600;
@@ -195,36 +278,19 @@
 
         .hero-price {
             font-family: 'Google Sans Display', 'Google Sans', sans-serif;
-            font-weight: 500;
-            font-size: 38px;
+            font-weight: 400;
+            font-size: 34px;
             line-height: 1.15;
             letter-spacing: -.5px;
             color: var(--fg-high);
             margin-bottom: var(--sp-4);
             animation: fadeUp 480ms var(--ease-out) 145ms both;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
-        
-        .hero-price-original {
-            font-size: 18px;
-            color: var(--fg-strike);
-            font-weight: 400;
-            margin-bottom: -4px;
-        }
-        
-        /* [FIX] Styling untuk tag semantik <s> */
-        .hero-price-original s {
-            text-decoration: line-through;
-            text-decoration-thickness: 1.5px;
-        }
-
         .hero-price .unit {
             font-size: 15px;
             font-weight: 400;
             letter-spacing: 0;
-            vertical-align: 2px;
+            vertical-align: 3px;
             color: var(--fg-med);
         }
 
@@ -236,8 +302,12 @@
             text-align: center;
         }
 
+        /* gradient animated text */
         .g-text {
-            background: linear-gradient(90deg, #4285f4 0%, #9b72cb 25%, #d96570 50%, #f4b400 75%, #4285f4 100%);
+            background: linear-gradient(
+                90deg,
+                #4285f4 0%, #9b72cb 25%, #d96570 50%, #f4b400 75%, #4285f4 100%
+            );
             background-size: 300% 100%;
             -webkit-background-clip: text;
             background-clip: text;
@@ -250,23 +320,42 @@
             50%       { background-position: 100% center; }
         }
 
+        /* ─── CTA button ─────────────────────────────────────────────── */
         .cta {
-            position: relative; display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-8);
-            overflow: hidden; width: 100%; height: 44px; padding: 0 var(--sp-24);
-            border-radius: var(--r-pill); border: none; cursor: pointer; text-decoration: none;
-            background: var(--pri); color: var(--pri-fg); font-family: 'Google Sans', sans-serif;
-            font-size: 14px; font-weight: 500; letter-spacing: .25px;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--sp-8);
+            overflow: hidden;
+            width: 100%;
+            height: 44px;
+            padding: 0 var(--sp-24);
+            border-radius: var(--r-pill);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            background: var(--pri);
+            color: var(--pri-fg);
+            font-family: 'Google Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: .25px;
             transition: box-shadow 250ms var(--ease-std), background-color 150ms var(--ease-std);
             animation: fadeUp 480ms var(--ease-out) 185ms both;
             -webkit-tap-highlight-color: transparent;
         }
         .cta-icon {
-            width: 16px; height: 16px; flex-shrink: 0; fill: var(--pri-fg);
+            width: 16px; height: 16px; flex-shrink: 0;
+            fill: var(--pri-fg);
             transition: transform 250ms var(--ease-out);
         }
         .cta::before {
-            content: ''; position: absolute; inset: 0; background: var(--pri-fg);
-            opacity: 0; transition: opacity 120ms var(--ease-std);
+            content: '';
+            position: absolute; inset: 0;
+            background: var(--pri-fg);
+            opacity: 0;
+            transition: opacity 120ms var(--ease-std);
         }
         .cta:hover { box-shadow: var(--shadow-sm); }
         .cta:hover::before { opacity: .08; }
@@ -274,38 +363,109 @@
         .cta:active::before { opacity: .14; }
         .cta:focus-visible { outline: 3px solid var(--pri); outline-offset: 2px; }
 
+        /* ripple */
         .ripple {
-            position: absolute; border-radius: 50%; background: rgba(255,255,255,.3);
-            transform: scale(0); animation: rippleOut 550ms linear forwards; pointer-events: none;
+            position: absolute; border-radius: 50%;
+            background: rgba(255,255,255,.3);
+            transform: scale(0);
+            animation: rippleOut 550ms linear forwards;
+            pointer-events: none;
         }
         @keyframes rippleOut { to { transform: scale(4); opacity: 0; } }
 
-        .rule { width: 100%; height: 1px; background: var(--border-subtle); }
-        .gap-16 { margin-top: var(--sp-16); }
+        /* ─── Divider ────────────────────────────────────────────────── */
+        .rule {
+            width: 100%; height: 1px;
+            background: var(--border-subtle);
+        }
 
-        .ideal { width: 100%; padding: var(--sp-16) 0 var(--sp-4); }
-        .ideal-label { font-size: 11px; font-weight: 600; letter-spacing: .6px; text-transform: uppercase; color: var(--fg-low); margin-bottom: var(--sp-6); }
-        .ideal-body { font-size: 13px; color: var(--fg-med); line-height: 1.55; }
+        /* ─── "Ideal untuk" section ──────────────────────────────────── */
+        .ideal {
+            width: 100%;
+            padding: var(--sp-16) 0 var(--sp-4);
+        }
+        .ideal-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .6px;
+            text-transform: uppercase;
+            color: var(--fg-low);
+            margin-bottom: var(--sp-6);
+        }
+        .ideal-body {
+            font-size: 13px;
+            color: var(--fg-med);
+            line-height: 1.55;
+        }
 
-        .features { width: 100%; list-style: none; padding: var(--sp-4) 0 0; }
-        .fi { display: flex; align-items: flex-start; gap: var(--sp-12); padding: var(--sp-12) 0; border-bottom: 1px solid var(--border-muted); }
+        /* ─── Features list ──────────────────────────────────────────── */
+        .features {
+            width: 100%;
+            list-style: none;
+            padding: var(--sp-4) 0 0;
+        }
+
+        .fi {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--sp-12);
+            padding: var(--sp-12) 0;
+            border-bottom: 1px solid var(--border-muted);
+        }
         .fi:last-child { border-bottom: none; padding-bottom: 0; }
-        .fi-icon { width: 32px; height: 32px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: var(--pri-tint); border-radius: var(--r-inner); margin-top: 1px; }
-        .fi-icon svg { width: 16px; height: 16px; }
-        .fi-title { font-size: 13px; font-weight: 600; color: var(--fg-high); line-height: 1.4; margin-bottom: var(--sp-2); }
-        .fi-desc { font-size: 12px; color: var(--fg-med); line-height: 1.55; }
 
-        .footer { width: 100%; max-width: 408px; text-align: center; font-size: 11px; line-height: 1.6; color: var(--fg-low); margin-top: var(--sp-16); }
+        /* icon container — fixed 32×32, centered, light tinted bg */
+        .fi-icon {
+            width: 32px; height: 32px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--pri-tint);
+            border-radius: var(--r-inner);
+            margin-top: 1px;
+        }
+        .fi-icon svg {
+            width: 16px; height: 16px;
+        }
+
+        .fi-body {}
+        .fi-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--fg-high);
+            line-height: 1.4;
+            margin-bottom: var(--sp-2);
+        }
+        .fi-desc {
+            font-size: 12px;
+            color: var(--fg-med);
+            line-height: 1.55;
+        }
+
+        /* ─── Footer ─────────────────────────────────────────────────── */
+        .footer {
+            width: 100%;
+            max-width: 408px;
+            text-align: center;
+            font-size: 11px;
+            line-height: 1.6;
+            color: var(--fg-low);
+            margin-top: var(--sp-16);
+        }
         .footer p + p { margin-top: var(--sp-2); }
         .footer a { color: var(--pri); text-decoration: none; }
         .footer a:hover { text-decoration: underline; }
 
+        /* ─── Spacing between card sections ─────────────────────────── */
+        .gap-12 { margin-top: var(--sp-12); }
+        .gap-16 { margin-top: var(--sp-16); }
+
+        /* ─── Responsive ─────────────────────────────────────────────── */
         @media (max-width: 360px) {
             .card { padding: var(--sp-24) var(--sp-20) var(--sp-24); }
             .hero-price { font-size: 30px; }
         }
-        
-        /* [FIX] Pastikan animasi dasar langsung mati di CSS jika sistem diset 'reduce motion' */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: .01ms !important;
@@ -319,13 +479,18 @@
 
 <main class="card" role="main">
 
-    <div class="badge">
-        <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M10 10a3.75 3.75 0 1 0 0-7.5A3.75 3.75 0 0 0 10 10Zm-5.833 6.667c0-3.222 2.611-5.834 5.833-5.834s5.833 2.612 5.833 5.834H4.167Z"/>
-        </svg>
-        Undangan dari Ridho Eka Putra
+    <!-- ① Referrer badge -->
+    <div class="badge-wrap">
+        <div class="badge" aria-label="Exclusive Gifts from Ridho Eka Putra">
+            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M10 10a3.75 3.75 0 1 0 0-7.5A3.75 3.75 0 0 0 10 10Zm-5.833 6.667c0-3.222 2.611-5.834 5.833-5.834s5.833 2.612 5.833 5.834H4.167Z"/>
+            </svg>
+            Exclusive Gifts from Ridho Eka Putra
+        </div>
+        <p class="badge-sub">Enjoy special offers from your friend!</p>
     </div>
 
+    <!-- ② Gemini star -->
     <div class="star-wrap" role="img" aria-label="Gemini AI">
         <svg class="star-svg" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M14 0C14 7.732 7.732 14 0 14C7.732 14 14 20.268 14 28C14 20.268 20.268 14 28 14C20.268 14 14 7.732 14 0Z" fill="url(#gstar)"/>
@@ -340,19 +505,27 @@
         </svg>
     </div>
 
+    <!-- ③ Hero text -->
     <p class="hero-eyebrow">Google AI Pro</p>
     <p class="hero-price">
-        <span class="hero-price-original">
-            <span class="sr-only">Harga asli total 4 bulan: </span>
-            <s>Rp&nbsp;1.236.000</s>
-        </span>
-        <span>
-            <span class="sr-only">Harga promo: </span>
-            Rp&nbsp;0<span class="unit">/4 bln pertama</span>
-        </span>
+        Rp&nbsp;309.000<span class="unit">/bln</span>
     </p>
-    <p class="hero-sub"><span class="g-text">Kupon diterapkan!</span> Akses gratis untuk Anda</p>
 
+    <!-- Coupon discount block -->
+    <div class="coupon-block">
+        <div class="coupon-row">
+            <span class="coupon-label">4 bulan</span>
+            <span class="coupon-original">Rp&nbsp;1.236.000</span>
+            <span class="coupon-arrow">→</span>
+            <span class="coupon-free">Rp&nbsp;0</span>
+        </div>
+        <div class="coupon-bar">
+            <span class="coupon-bar-fill"></span>
+            <span class="coupon-bar-text">Hemat penuh · Berlaku lewat undangan eksklusif</span>
+        </div>
+    </div>
+
+    <!-- ④ CTA button -->
     <a href="https://g.co/g1referral/EWNT4RD8" class="cta" target="_blank" rel="noopener noreferrer" id="cta">
         Dapatkan Google AI Pro
         <svg class="cta-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -360,6 +533,7 @@
         </svg>
     </a>
 
+    <!-- ─── Ideal untuk ─── -->
     <div class="rule gap-16"></div>
     <div class="ideal">
         <p class="ideal-label">Ideal untuk</p>
@@ -367,7 +541,10 @@
     </div>
     <div class="rule"></div>
 
+    <!-- ─── Feature list ─── -->
     <ul class="features" aria-label="Semua fitur yang disertakan">
+
+        <!-- Gemini App -->
         <li class="fi">
             <div class="fi-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -385,6 +562,8 @@
                 <p class="fi-desc">Akses lebih tinggi ke Gemini 3.1 Pro, Deep Research, pembuatan gambar dengan Imagen, dan video dengan Veo 3.1.</p>
             </div>
         </li>
+
+        <!-- Flow -->
         <li class="fi">
             <div class="fi-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -397,6 +576,8 @@
                 <p class="fi-desc">Alat Pembuatan Film bertenaga AI untuk membuat adegan dan cerita sinematik dengan Veo 3.1.</p>
             </div>
         </li>
+
+        <!-- Whisk -->
         <li class="fi">
             <div class="fi-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -410,6 +591,8 @@
                 <p class="fi-desc">Pembuatan video dari gambar dengan akses lebih tinggi ke Veo 3.</p>
             </div>
         </li>
+
+        <!-- AI Credits -->
         <li class="fi">
             <div class="fi-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -422,6 +605,8 @@
                 <p class="fi-desc">Poin AI untuk meningkatkan akses ke fitur AI Google tingkat lanjut.</p>
             </div>
         </li>
+
+        <!-- Google Search -->
         <li class="fi">
             <div class="fi-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -435,6 +620,8 @@
                 <p class="fi-desc">Akses lebih tinggi ke model Gemini 3 Pro di Google Search dan fitur lainnya.</p>
             </div>
         </li>
+
+        <!-- NotebookLM -->
         <li class="fi">
             <div class="fi-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -447,6 +634,8 @@
                 <p class="fi-desc">Partner riset dengan Ringkasan Audio &amp; Video, Kuis, dan fitur premium lainnya.</p>
             </div>
         </li>
+
+        <!-- Gmail etc -->
         <li class="fi">
             <div class="fi-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -459,6 +648,8 @@
                 <p class="fi-desc">Akses Gemini langsung di seluruh aplikasi Google Workspace.</p>
             </div>
         </li>
+
+        <!-- Antigravity -->
         <li class="fi">
             <div class="fi-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -472,6 +663,8 @@
                 <p class="fi-desc">Batas tarif lebih tinggi untuk model agen di platform pengembangan agentic Google.</p>
             </div>
         </li>
+
+        <!-- Developer Program -->
         <li class="fi">
             <div class="fi-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -484,6 +677,8 @@
                 <p class="fi-desc">Batas lebih tinggi untuk Gemini CLI, Code Assist, Jules, kredit Cloud, dan lainnya.</p>
             </div>
         </li>
+
+        <!-- Storage -->
         <li class="fi">
             <div class="fi-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -495,6 +690,7 @@
                 <p class="fi-desc">Total storage untuk Google Foto, Drive, dan Gmail.</p>
             </div>
         </li>
+
     </ul>
 
 </main>
@@ -511,38 +707,30 @@
 
 <script>
 (function () {
-    /* [FIX] Interaksi Keyboard: Mengubah listener pointerdown ke click dan memvalidasi koordinat 0 */
+    /* Ripple on CTA */
     document.querySelectorAll('.cta').forEach(btn => {
-        btn.addEventListener('click', e => {
+        btn.addEventListener('pointerdown', e => {
             const rect = btn.getBoundingClientRect();
             const size = Math.max(rect.width, rect.height);
             const r = document.createElement('span');
             r.className = 'ripple';
-            
-            // Jika diklik lewat keyboard (Enter/Space), koordinat clientX/Y adalah 0. Paksa ke tengah.
-            let x = (e.clientX !== 0) ? e.clientX - rect.left : rect.width / 2;
-            let y = (e.clientY !== 0) ? e.clientY - rect.top : rect.height / 2;
-            
-            r.style.cssText = `width:${size}px;height:${size}px;left:${x - size / 2}px;top:${y - size / 2}px`;
+            r.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - rect.left - size / 2}px;top:${e.clientY - rect.top - size / 2}px`;
             btn.appendChild(r);
             r.addEventListener('animationend', () => r.remove(), { once: true });
         });
     });
 
-    /* [FIX] The Reduced-Motion Paradox: Validasi preferensi sistem sebelum menjalankan animasi inline JS */
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!prefersReducedMotion) {
-        const items = document.querySelectorAll('.fi');
-        items.forEach((el, i) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(10px)';
-            el.style.transition = `opacity 380ms cubic-bezier(.05,.7,.1,1) ${220 + i * 30}ms, transform 380ms cubic-bezier(.05,.7,.1,1) ${220 + i * 30}ms`;
-            requestAnimationFrame(() => requestAnimationFrame(() => {
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
-            }));
-        });
-    }
+    /* Stagger feature items in */
+    const items = document.querySelectorAll('.fi');
+    items.forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(10px)';
+        el.style.transition = `opacity 380ms cubic-bezier(.05,.7,.1,1) ${220 + i * 30}ms, transform 380ms cubic-bezier(.05,.7,.1,1) ${220 + i * 30}ms`;
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        }));
+    });
 }());
 </script>
 
