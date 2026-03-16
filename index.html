@@ -3,160 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Klaim THR Digital: 4 Bulan Gemini Advanced Gratis!</title>
+    <title>Undangan Eksklusif Google One AI Premium</title>
     
-    <link rel="icon" type="image/svg+xml" href="https://www.google.com/images/branding/product/2x/googleg_64dp.png">
+    <meta property="og:title" content="Undangan: 4 Bulan Gemini Advanced Gratis">
+    <meta property="og:description" content="Ridho Eka Putra mengundang Anda untuk mencoba model AI tercanggih dari Google tanpa biaya.">
+    <meta property="og:image" content="https://www.gstatic.com/images/branding/product/2x/google_one_96dp.png">
+    <meta name="theme-color" content="#f3f6fc" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#131314" media="(prefers-color-scheme: dark)">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
+        /* Light Theme (Default Material 3) */
         :root {
-            --google-blue: #4285F4;
-            --google-red: #DB4437;
-            --google-yellow: #F4B400;
-            --google-green: #0F9D58;
-            --text-dark: #3c4043;
-            --text-light: #5f6368;
+            --google-blue: #0b57d0;
+            --button-hover: #0842a0;
+            --google-surface: #f3f6fc;
+            --card-bg: #ffffff;
+            --text-primary: #1f1f1f;
+            --text-secondary: #444746;
+            --border-color: #e0e0e0;
+            --badge-bg: #e8f0fe;
+            --badge-text: #1967d2;
+            --focus-ring: rgba(11, 87, 208, 0.4);
+        }
+
+        /* Dark Theme (Material 3 Dark) */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --google-blue: #a8c7fa;
+                --button-hover: #d3e3fd;
+                --google-surface: #131314;
+                --card-bg: #1e1e1e;
+                --text-primary: #e3e3e3;
+                --text-secondary: #c4c7c5;
+                --border-color: #444746;
+                --badge-bg: #004a77;
+                --badge-text: #c2e7ff;
+                --focus-ring: rgba(168, 199, 250, 0.4);
+            }
         }
 
         body {
             font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa;
-            color: var(--text-dark);
+            background-color: var(--google-surface);
+            color: var(--text-primary);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
             align-items: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Container Utama */
         .card-container {
-            background-color: white;
-            border-radius: 24px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.1);
-            max-width: 480px;
-            width: 90%;
+            background-color: var(--card-bg);
+            border-radius: 28px;
+            max-width: 440px;
+            width: 85%;
             margin: 60px 20px 40px 20px;
-            padding: 48px 32px;
+            padding: 40px;
             text-align: center;
-            border: 1px solid #dadce0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
-        /* Logo dan Judul */
-        .logo-section img {
-            height: 48px;
+        .referrer-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 6px 16px;
+            border-radius: 16px;
+            font-size: 13px;
+            font-weight: 500;
             margin-bottom: 24px;
+            letter-spacing: 0.2px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .logo-section img {
+            height: 36px;
+            margin-bottom: 28px;
+        }
+
+        .gemini-logo {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px auto;
+            animation: pulse 3s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.9; }
+            100% { transform: scale(1.05); opacity: 1; }
         }
 
         h1 {
-            font-weight: 500;
-            font-size: 28px;
-            line-height: 36px;
+            font-weight: 400;
+            font-size: 32px;
+            line-height: 40px;
             margin: 0 0 16px 0;
-            color: #1f1f1f;
+            letter-spacing: -0.5px;
         }
 
         .highlight-text {
-            background: linear-gradient(90deg, #4285F4, #9b51e0, #DB4437);
+            background: linear-gradient(74deg, #4285f4 0, #9b72cb 9%, #d96570 20%, #d96570 24%, #9b72cb 35%, #4285f4 44%, #9b72cb 50%, #d96570 56%, #f4b400 75%, #f4b400 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 700;
+            font-weight: 500;
+            /* Memastikan teks tetap terbaca jika gradient gagal dimuat */
+            color: #9b72cb; 
         }
 
         .description {
             font-size: 16px;
             line-height: 24px;
-            color: var(--text-light);
+            color: var(--text-secondary);
             margin-bottom: 32px;
         }
 
-        /* Visual Gemini/AI (Placeholder Simpel tapi Elegan) */
-        .ai-visual {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 32px auto;
-            background: radial-gradient(circle, rgba(66,133,244,0.1) 0%, rgba(155,81,224,0.05) 100%);
-            border-radius: 50%;
-            display: flex;
+        .cta-button {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            border: 2px solid rgba(66,133,244,0.15);
-        }
-
-        .ai-visual::before {
-            content: '✨';
-            font-size: 50px;
-        }
-
-        /* Tombol Klaim yang Profesional */
-        .cta-button {
-            display: inline-block;
             background-color: var(--google-blue);
-            color: white;
-            padding: 12px 32px;
-            border-radius: 30px;
+            color: var(--card-bg); /* Berubah dinamis saat dark mode */
+            padding: 10px 32px;
+            height: 48px;
+            border-radius: 24px;
             text-decoration: none;
             font-weight: 500;
-            font-size: 16px;
+            font-size: 14px;
             letter-spacing: 0.1px;
-            transition: background-color 0.2s, box-shadow 0.2s;
+            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
             border: none;
             cursor: pointer;
-            box-shadow: 0 1px 2px rgba(60,64,67,0.3), 0 1px 3px rgba(60,64,67,0.15);
+            width: 100%;
+            box-sizing: border-box;
+            outline: none;
         }
 
         .cta-button:hover {
-            background-color: #357ae8;
-            box-shadow: 0 1px 2px rgba(60,64,67,0.3), 0 2px 6px rgba(60,64,67,0.15);
+            background-color: var(--button-hover);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
         }
 
-        /* Footer Info/Disclamer Syarat */
+        /* Standar Aksesibilitas (a11y) untuk Keyboard Navigation */
+        .cta-button:focus-visible, a:focus-visible {
+            box-shadow: 0 0 0 4px var(--focus-ring);
+        }
+
         .footer {
-            max-width: 480px;
-            width: 90%;
+            max-width: 440px;
+            width: 85%;
             margin-top: auto;
             padding-bottom: 40px;
             text-align: center;
-            font-size: 13px;
-            color: var(--text-light);
-            line-height: 1.6;
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.5;
         }
 
-        .footer p { margin: 6px 0; }
-        
-        .footer strong { color: var(--text-dark); }
+        .footer p { margin: 8px 0; }
+        .footer a { color: var(--google-blue); text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
 
     </style>
 </head>
 <body>
 
-    <div class="card-container">
-        <div class="logo-section">
-            <img src="https://www.gstatic.com/images/branding/product/2x/google_one_96dp.png" alt="Google One Logo">
+    <main class="card-container" role="main">
+        <div class="referrer-badge" aria-label="Informasi pengundang">
+            Undangan spesial dari Ridho Eka Putra
         </div>
 
-        <div class="ai-visual"></div>
+        <div class="logo-section">
+            <img src="https://www.gstatic.com/images/branding/product/2x/google_one_96dp.png" alt="Logo Google One">
+        </div>
+
+        <svg class="gemini-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animasi logo bintang Gemini">
+            <path d="M11.9998 24C11.9998 24 11.5367 15.6888 5.47462 9.62673C-0.587428 3.56469 0 3.56469 0 3.56469C0 3.56469 8.31118 4.02781 14.3732 10.0899C20.4353 16.1519 19.8478 16.1519 19.8478 16.1519C19.8478 16.1519 20.311 24.463 26.373 30.5251C32.4351 36.5871 31.8476 36.5871 31.8476 36.5871C31.8476 36.5871 23.5365 36.124 17.4744 30.0619C11.4124 24 11.9998 24 11.9998 24Z" fill="url(#gemini-gradient)" transform="scale(0.5) translate(8, 8)"/>
+            <defs>
+                <linearGradient id="gemini-gradient" x1="0" y1="0" x2="31.8476" y2="36.5871" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#4285F4"/>
+                    <stop offset="0.33" stop-color="#9B72CB"/>
+                    <stop offset="0.66" stop-color="#D96570"/>
+                    <stop offset="1" stop-color="#F4B400"/>
+                </linearGradient>
+            </defs>
+        </svg>
 
         <h1>
-            Selamat! Kamu dapat <span class="highlight-text">Gratis 4 Bulan</span><br>
-            Gemini Advanced.
+            Dapatkan <span class="highlight-text">Gemini Advanced</span> tanpa biaya.
         </h1>
         
         <p class="description">
-            Ini adalah kupon THR khusus yang memberikan akses ke model AI paling canggih dari Google (Gemini 1.5 Pro). Nikmati fitur premium tanpa biaya selama masa uji coba.
+            Ridho Eka Putra mengundang Anda untuk mencoba Google One AI Premium. Nikmati akses ke model AI kami yang paling mumpuni, penyimpanan 2 TB, dan fitur eksklusif lainnya selama 4 bulan.
         </p>
 
-        <a href="https://g.co/g1referral/EWNT4RD8" class="cta-button">
-            Klaim Sekarang
+        <a href="https://g.co/g1referral/EWNT4RD8" class="cta-button" target="_blank" rel="noopener noreferrer">
+            Mulai uji coba
         </a>
-    </div>
+    </main>
 
-    <div class="footer">
-        <p>Penawaran ini berlaku terbatas sebagai hadiah hari raya Idul Fitri.</p>
-        <p><strong>Syarat:</strong> Berlaku untuk pengguna yang belum pernah mendaftar uji coba gratis Google One AI Premium sebelumnya.</p>
-        <p><em>Metode pembayaran valid diperlukan saat verifikasi, namun tidak ada tagihan selama masa uji coba.</em></p>
-    </div>
+    <footer class="footer" role="contentinfo">
+        <p>Penawaran uji coba 4 bulan berlaku untuk pengguna baru Google One AI Premium. Metode pembayaran yang valid diperlukan saat pendaftaran.</p>
+        <p>Anda tidak akan ditagih sebelum masa uji coba berakhir. Batal kapan saja di setelan akun Anda.</p>
+        <p><a href="https://one.google.com/terms-of-service" target="_blank" rel="noopener noreferrer">Persyaratan Layanan Google One</a> • <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Kebijakan Privasi</a></p>
+    </footer>
 
 </body>
 </html>
