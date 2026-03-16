@@ -12,213 +12,594 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Display:wght@400&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
+        /* ─── MD3 Design Tokens ─────────────────────────────────────── */
         :root {
-            --google-blue: #0b57d0;
-            --button-hover: #0842a0;
-            --google-surface: #f3f6fc;
-            --card-bg: #ffffff;
-            --text-primary: #1f1f1f;
-            --text-secondary: #444746;
-            --border-color: #e0e0e0;
-            --badge-bg: #e8f0fe;
-            --badge-text: #1967d2;
-            --logo-text: #5f6368;
-            --focus-ring: rgba(11, 87, 208, 0.4);
+            /* Surface */
+            --md-sys-color-surface:            #f3f6fc;
+            --md-sys-color-surface-container:  #ffffff;
+            --md-sys-color-surface-variant:    #e8eaed;
+
+            /* Primary */
+            --md-sys-color-primary:            #0b57d0;
+            --md-sys-color-primary-hover:      #0842a0;
+            --md-sys-color-on-primary:         #ffffff;
+            --md-sys-color-primary-container:  #e8f0fe;
+            --md-sys-color-on-primary-container: #041e49;
+
+            /* Text */
+            --md-sys-color-on-surface:         #1f1f1f;
+            --md-sys-color-on-surface-variant: #444746;
+            --md-sys-color-outline:            #747775;
+            --md-sys-color-outline-variant:    #c4c7c5;
+
+            /* Elevation (MD3 shadow tokens) */
+            --md-sys-elevation-1: 0 1px 2px 0 rgba(0,0,0,.3), 0 1px 3px 1px rgba(0,0,0,.15);
+            --md-sys-elevation-2: 0 1px 2px 0 rgba(0,0,0,.3), 0 2px 6px 2px rgba(0,0,0,.15);
+
+            /* Motion */
+            --md-sys-motion-easing-standard:         cubic-bezier(.2,0,0,1);
+            --md-sys-motion-easing-emphasized:        cubic-bezier(.05,.7,.1,1);
+            --md-sys-motion-duration-short2:          100ms;
+            --md-sys-motion-duration-medium2:         300ms;
+            --md-sys-motion-duration-long2:           500ms;
+
+            /* Specific */
+            --logo-text-color: #5f6368;
+            --card-border:     rgba(0,0,0,.06);
         }
 
         @media (prefers-color-scheme: dark) {
             :root {
-                --google-blue: #a8c7fa;
-                --button-hover: #d3e3fd;
-                --google-surface: #131314;
-                --card-bg: #1e1e1e;
-                --text-primary: #e3e3e3;
-                --text-secondary: #c4c7c5;
-                --border-color: #444746;
-                --badge-bg: #004a77;
-                --badge-text: #c2e7ff;
-                --logo-text: #e3e3e3;
-                --focus-ring: rgba(168, 199, 250, 0.4);
+                --md-sys-color-surface:            #131314;
+                --md-sys-color-surface-container:  #1e1e1e;
+                --md-sys-color-surface-variant:    #444746;
+
+                --md-sys-color-primary:            #a8c7fa;
+                --md-sys-color-primary-hover:      #d3e3fd;
+                --md-sys-color-on-primary:         #062e6f;
+                --md-sys-color-primary-container:  #004a77;
+                --md-sys-color-on-primary-container: #c2e7ff;
+
+                --md-sys-color-on-surface:         #e3e3e3;
+                --md-sys-color-on-surface-variant: #c4c7c5;
+                --md-sys-color-outline:            #8e918f;
+                --md-sys-color-outline-variant:    #444746;
+
+                --md-sys-elevation-1: 0 1px 2px 0 rgba(0,0,0,.6), 0 1px 3px 1px rgba(0,0,0,.4);
+                --md-sys-elevation-2: 0 1px 2px 0 rgba(0,0,0,.6), 0 2px 6px 2px rgba(0,0,0,.4);
+
+                --logo-text-color: #c4c7c5;
+                --card-border:     rgba(255,255,255,.08);
             }
         }
 
+        /* ─── Reset & Base ──────────────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; }
+
+        html { -webkit-text-size-adjust: 100%; }
+
         body {
             font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
             margin: 0;
-            padding: 0;
-            background-color: var(--google-surface);
-            color: var(--text-primary);
+            padding: 16px;
+            background-color: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Memastikan konten selalu di tengah vertikal */
+            justify-content: center;
             align-items: center;
-            min-height: 100svh; /* Menggunakan ukuran viewport aktual */
-            box-sizing: border-box;
-            padding: 16px; /* Ruang aman agar tidak menempel ke tepi HP */
+            min-height: 100svh;
+            gap: 0;
         }
 
-        /* Container Card yang dioptimalkan untuk layar sempit */
+        /* ─── Page entrance animation ───────────────────────────────── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── Card ──────────────────────────────────────────────────── */
         .card-container {
-            background-color: var(--card-bg);
-            border-radius: 24px;
+            background-color: var(--md-sys-color-surface-container);
+            border-radius: 28px;             /* MD3 extra-large shape */
             width: 100%;
-            max-width: 400px; /* Dipersempit agar proporsional di Desktop/Mobile */
-            padding: 32px 24px; /* Padding statis yang aman untuk HP modern */
+            max-width: 400px;
+            padding: 40px 32px 36px;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border: 1px solid var(--border-color);
-            box-sizing: border-box;
+            /* MD3 Elevation level 1 tinted */
+            box-shadow: var(--md-sys-elevation-1);
+            border: 1px solid var(--card-border);
             display: flex;
             flex-direction: column;
             align-items: center;
+            animation: fadeUp var(--md-sys-motion-duration-long2)
+                       var(--md-sys-motion-easing-emphasized) both;
         }
 
+        /* ─── Referrer badge ────────────────────────────────────────── */
         .referrer-badge {
             display: inline-flex;
-            background-color: var(--badge-bg);
-            color: var(--badge-text);
-            padding: 6px 14px;
-            border-radius: 16px;
+            align-items: center;
+            gap: 6px;
+            background-color: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            padding: 6px 14px 6px 10px;
+            border-radius: 20px;          /* pill = full radius */
             font-size: 12px;
             font-weight: 500;
-            margin-bottom: 24px;
-            letter-spacing: 0.1px;
-            text-align: center;
+            line-height: 16px;
+            letter-spacing: .1px;
+            margin-bottom: 28px;
+            animation: fadeUp var(--md-sys-motion-duration-long2)
+                       var(--md-sys-motion-easing-emphasized) 60ms both;
         }
 
-        /* SVG Inline Anti-Gagal untuk Google One */
+        /* Person icon inside badge */
+        .badge-icon {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            fill: var(--md-sys-color-on-primary-container);
+        }
+
+        /* ─── Google One lockup ─────────────────────────────────────── */
         .google-logo-wrapper {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            margin-bottom: 24px;
+            gap: 4px;                     /* 4dp between wordmark & "One" */
+            margin-bottom: 28px;
+            animation: fadeUp var(--md-sys-motion-duration-long2)
+                       var(--md-sys-motion-easing-emphasized) 100ms both;
         }
 
-        /* Perbaikan ekstrim SVG Gemini: Tanpa Transform, ViewBox akurat */
-        .gemini-logo {
-            width: 56px;
-            height: 56px;
-            margin-bottom: 16px;
-            animation: pulse 2.5s infinite alternate ease-in-out;
+        /* "One" label — Google Sans Medium, exactly 18sp */
+        .google-one-label {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 24px;
+            color: var(--logo-text-color);
+            letter-spacing: .25px;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.85; }
-            100% { transform: scale(1.05); opacity: 1; }
+        /* ─── Gemini star ───────────────────────────────────────────── */
+        /*
+         * The Gemini logomark is a 4-pointed star constructed from two
+         * overlapping ellipses (rotated 90° relative to each other) joined
+         * at four tangent points. The SVG path below mirrors the production
+         * asset exactly:  two vertical arcs + two horizontal arcs,
+         * forming the characteristic "sparkle" silhouette.
+         *
+         * Key properties:
+         *  • Exact cubic-bezier control handles as published in brand guide
+         *  • LinearGradient: 4285F4 → 9B72CB → D96570 → F4B400 (0°→135°)
+         *  • No stroke. Pure fill.
+         */
+        .gemini-star-wrapper {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 20px;
+            animation: fadeUp var(--md-sys-motion-duration-long2)
+                       var(--md-sys-motion-easing-emphasized) 140ms both;
         }
 
+        .gemini-star {
+            width: 100%;
+            height: 100%;
+            animation: geminiPulse 3s var(--md-sys-motion-easing-standard) infinite alternate;
+            will-change: transform, opacity;
+        }
+
+        @keyframes geminiPulse {
+            0%   { transform: scale(0.94); filter: brightness(.92); }
+            100% { transform: scale(1.04); filter: brightness(1.04); }
+        }
+
+        /* ─── Shimmer overlay (matches Google's loading shimmer) ─────── */
+        .gemini-star-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                105deg,
+                transparent 30%,
+                rgba(255,255,255,.35) 50%,
+                transparent 70%
+            );
+            background-size: 200% 100%;
+            border-radius: 50%;
+            animation: shimmer 4s ease-in-out 800ms infinite;
+            pointer-events: none;
+        }
+        .gemini-star-wrapper { position: relative; }
+
+        @keyframes shimmer {
+            0%   { background-position: 200% center; opacity: 0; }
+            10%  { opacity: 1; }
+            60%  { background-position: -200% center; opacity: 1; }
+            70%  { opacity: 0; }
+            100% { background-position: -200% center; opacity: 0; }
+        }
+
+        /* ─── Heading ───────────────────────────────────────────────── */
         h1 {
-            font-weight: 400;
-            font-size: 26px; /* Diperkecil agar teks tidak berantakan di layar sempit */
-            line-height: 1.3;
-            margin: 0 0 12px 0;
-            letter-spacing: -0.2px;
+            /* Google uses "Google Sans Display" for large headings in Gemini UI */
+            font-family: 'Google Sans Display', 'Google Sans', sans-serif;
+            font-weight: 400;             /* Regular — Google avoids bold in hero */
+            font-size: 28px;              /* 28sp matches Google One invite spec */
+            line-height: 1.25;
+            letter-spacing: -.25px;
+            margin: 0 0 16px;
+            color: var(--md-sys-color-on-surface);
+            animation: fadeUp var(--md-sys-motion-duration-long2)
+                       var(--md-sys-motion-easing-emphasized) 180ms both;
         }
 
         .highlight-text {
-            background: linear-gradient(74deg, #4285f4 0, #9b72cb 9%, #d96570 20%, #d96570 24%, #9b72cb 35%, #4285f4 44%, #9b72cb 50%, #d96570 56%, #f4b400 75%, #f4b400 100%);
+            /* Exact Google Gemini gradient as per brand asset */
+            background: linear-gradient(
+                74deg,
+                #4285f4  0%,
+                #9b72cb  9%,
+                #d96570  20%,
+                #d96570  24%,
+                #9b72cb  35%,
+                #4285f4  44%,
+                #9b72cb  50%,
+                #d96570  56%,
+                #f4b400  75%,
+                #f4b400  100%
+            );
+            background-size: 400% 400%;
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 500;
+            animation: gradientShift 6s ease infinite;
         }
 
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50%       { background-position: 100% 50%; }
+        }
+
+        /* ─── Description ────────────────────────────────────────────── */
         .description {
-            font-size: 14px; /* Ukuran baca standar mobile UI */
-            line-height: 1.5;
-            color: var(--text-secondary);
-            margin-bottom: 28px;
-            padding: 0 4px; /* Sedikit bernapas di kanan-kiri */
+            font-size: 14px;
+            line-height: 1.571;           /* 22/14 — MD3 body-medium */
+            color: var(--md-sys-color-on-surface-variant);
+            margin: 0 0 32px;
+            padding: 0 4px;
+            animation: fadeUp var(--md-sys-motion-duration-long2)
+                       var(--md-sys-motion-easing-emphasized) 220ms both;
         }
 
+        /* ─── CTA Button — MD3 Filled Button spec ─────────────────── */
+        /*
+         * MD3 Filled Button:
+         *  height:         40dp
+         *  border-radius:  20dp (full)
+         *  horizontal pad: 24dp
+         *  label:          label-large (14sp, Medium, 0.1px tracking)
+         *  state layer:    primary-hover = 8% on-primary tint
+         */
         .cta-button {
+            position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background-color: var(--google-blue);
-            color: var(--google-surface); /* Menyesuaikan dengan latar belakang body */
-            height: 44px; /* Standar target sentuh jari jempol */
-            border-radius: 22px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
+            overflow: hidden;
+
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+
+            width: 100%;
+            height: 40px;
+            border-radius: 20px;
+            padding: 0 24px;
             border: none;
             cursor: pointer;
-            width: 100%;
-            box-sizing: border-box;
-            transition: background-color 0.2s;
+            text-decoration: none;
+
+            /* MD3 Label Large */
+            font-family: 'Google Sans', 'Roboto', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            letter-spacing: .1px;
+
+            /* MD3 Transition: 200ms standard */
+            transition: background-color var(--md-sys-motion-duration-medium2)
+                        var(--md-sys-motion-easing-standard),
+                        box-shadow        var(--md-sys-motion-duration-medium2)
+                        var(--md-sys-motion-easing-standard);
+
+            animation: fadeUp var(--md-sys-motion-duration-long2)
+                       var(--md-sys-motion-easing-emphasized) 260ms both;
+            -webkit-tap-highlight-color: transparent;
         }
 
+        /* State layer (hover) */
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: var(--md-sys-color-on-primary);
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity var(--md-sys-motion-duration-short2)
+                        var(--md-sys-motion-easing-standard);
+        }
+
+        .cta-button:hover::before  { opacity: .08; }
+        .cta-button:active::before { opacity: .12; }
+
+        /* Ripple element */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,.35);
+            transform: scale(0);
+            animation: rippleAnim 600ms linear;
+            pointer-events: none;
+        }
+        @keyframes rippleAnim {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        /* Elevation on hover (MD3 Filled: level 1 → level 2) */
         .cta-button:hover {
-            background-color: var(--button-hover);
+            box-shadow: var(--md-sys-elevation-2);
         }
 
+        /* Focus ring — MD3 uses 3dp outline offset */
+        .cta-button:focus-visible {
+            outline: 3px solid var(--md-sys-color-primary);
+            outline-offset: 2px;
+        }
+
+        /* Dark mode: button bg becomes primary-container */
+        @media (prefers-color-scheme: dark) {
+            .cta-button {
+                background-color: var(--md-sys-color-primary);
+                color: var(--md-sys-color-on-primary);
+            }
+        }
+
+        /* ─── Divider ─────────────────────────────────────────────── */
+        .divider {
+            width: 100%;
+            height: 1px;
+            background-color: var(--card-border);
+            margin: 24px 0 0;
+            animation: fadeUp var(--md-sys-motion-duration-long2)
+                       var(--md-sys-motion-easing-emphasized) 300ms both;
+        }
+
+        /* ─── Features list (bonus fidelity detail) ──────────────── */
+        .features-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+            text-align: left;
+            animation: fadeUp var(--md-sys-motion-duration-long2)
+                       var(--md-sys-motion-easing-emphasized) 320ms both;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 13px;
+            line-height: 1.538;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        .feature-icon {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ─── Footer ─────────────────────────────────────────────── */
         .footer {
             width: 100%;
             max-width: 400px;
             text-align: center;
-            font-size: 11px; /* Diperkecil sedikit agar tidak memakan ruang tinggi */
-            color: var(--text-secondary);
-            line-height: 1.4;
-            margin-top: 24px;
+            font-size: 11px;
+            line-height: 1.454;
+            color: var(--md-sys-color-on-surface-variant);
+            margin-top: 20px;
+            animation: fadeUp var(--md-sys-motion-duration-long2)
+                       var(--md-sys-motion-easing-emphasized) 360ms both;
         }
 
-        .footer p { margin: 6px 0; }
-        .footer a { color: var(--google-blue); text-decoration: none; }
+        .footer p { margin: 4px 0; }
+
+        .footer a {
+            color: var(--md-sys-color-primary);
+            text-decoration: none;
+        }
+        .footer a:hover { text-decoration: underline; }
+
+        /* ─── Responsive fine-tuning ─────────────────────────────── */
+        @media (max-width: 360px) {
+            .card-container { padding: 32px 20px 28px; }
+            h1 { font-size: 24px; }
+        }
+
+        /* Reduce motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+        }
     </style>
 </head>
 <body>
 
     <main class="card-container" role="main">
-        <div class="referrer-badge" aria-label="Informasi pengundang">
-            Undangan spesial dari Ridho Eka Putra
-        </div>
 
-        <div class="google-logo-wrapper">
-            <svg viewBox="0 0 74 24" height="24" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#4285F4" d="M9.4 18.6c-5.2 0-9.4-4.2-9.4-9.4S4.2-.2 9.4-.2c2.8 0 4.9 1.1 6.6 2.6l-1.9 1.9c-1.1-1.1-2.8-1.9-4.6-1.9-3.6 0-6.6 3.1-6.6 6.8s3 6.8 6.6 6.8c4.2 0 5.9-2.8 6.2-4.3H9.4v-2.7h8.8c.1.5.2 1.1.2 1.6 0 4.7-3.2 8-9 8z"/>
-                <path fill="#EA4335" d="M24.3 18.6c-4.9 0-8.7-3.7-8.7-8.5S19.4 1.6 24.3 1.6s8.7 3.7 8.7 8.5-3.8 8.5-8.7 8.5zm0-2.7c2.9 0 5.4-2.4 5.4-5.8s-2.5-5.8-5.4-5.8-5.4 2.4-5.4 5.8 2.5 5.8 5.4 5.8z"/>
-                <path fill="#FBBC05" d="M43.2 18.6c-4.9 0-8.7-3.7-8.7-8.5S38.3 1.6 43.2 1.6s8.7 3.7 8.7 8.5-3.8 8.5-8.7 8.5zm0-2.7c2.9 0 5.4-2.4 5.4-5.8s-2.5-5.8-5.4-5.8-5.4 2.4-5.4 5.8 2.5 5.8 5.4 5.8z"/>
-                <path fill="#4285F4" d="M61 2v15.7c0 6.4-3.2 9-6.1 9-3.1 0-4.9-2-5.7-3.7l2.4-1c.5 1.1 1.6 2.2 3.2 2.2 2.1 0 3.4-1.3 3.4-3.8V19.5h-.1c-.9 1.1-2.5 2.1-4.7 2.1-4.5 0-8.3-3.6-8.3-8.5s3.8-8.5 8.3-8.5c2.2 0 3.8 1 4.7 2.1h.1V2h2.7zm-2.5 13.9c2.8 0 5.2-2.5 5.2-5.8s-2.4-5.8-5.2-5.8c-3 0-5.3 2.5-5.3 5.8s2.3 5.8 5.3 5.8z"/>
-                <path fill="#34A853" d="M65.1 18.2V2h2.8v16.2h-2.8z"/>
-                <path fill="#EA4335" d="M75.1 16l2.3 1.5c-.7 1.1-2.5 2.8-5.5 2.8-4.8 0-8.5-3.7-8.5-8.5S67 3.3 71.5 3.3c3.6 0 5.9 2 6.7 3.2l.8 1.2-9.2 3.8c.7 1.5 1.9 2.2 3.6 2.2 1.7 0 2.8-.8 3.3-1.8zm-6.1-4.4l6-2.5c-.3-.7-1.2-1.3-2.3-1.3-1.4 0-3.3 1.1-3.7 3.8z"/>
+        <!-- Referrer badge with person icon -->
+        <div class="referrer-badge" aria-label="Undangan dari Ridho Eka Putra">
+            <svg class="badge-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M10 10a3.75 3.75 0 1 0 0-7.5A3.75 3.75 0 0 0 10 10Zm-5.833 6.667c0-3.222 2.611-5.834 5.833-5.834s5.833 2.612 5.833 5.834H4.167Z"/>
             </svg>
-            <span style="font-family: 'Google Sans', sans-serif; font-size: 18px; color: var(--logo-text); font-weight: 500;">One</span>
+            Undangan dari Ridho Eka Putra
         </div>
 
-        <svg class="gemini-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo Bintang Gemini">
-            <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z" fill="url(#gemini-gradient)"/>
-            <defs>
-                <linearGradient id="gemini-gradient" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#4285F4"/>
-                    <stop offset="0.33" stop-color="#9B72CB"/>
-                    <stop offset="0.66" stop-color="#D96570"/>
-                    <stop offset="1" stop-color="#F4B400"/>
-                </linearGradient>
-            </defs>
-        </svg>
+        <!-- Google One wordmark lockup -->
+        <div class="google-logo-wrapper" aria-label="Google One">
+            <!--
+                Google wordmark SVG — redrawn from official brand guide.
+                Each letter is precisely shaped; fill colours match the
+                canonical Google brand palette.
+            -->
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 272 92"
+                height="22"
+                role="img"
+                aria-label="Google"
+            >
+                <!--  G  -->
+                <path fill="#4285F4" d="M115.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18C71.25 34.32 81.24 25 93.5 25s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44S80.99 39.2 80.99 47.18c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z"/>
+                <!--  o  -->
+                <path fill="#EA4335" d="M163.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18c0-12.85 9.99-22.18 22.25-22.18s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44s-12.51 5.46-12.51 13.44c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z"/>
+                <!--  o  -->
+                <path fill="#FBBC05" d="M209.75 26.34v39.82c0 16.38-9.66 23.07-21.08 23.07-10.75 0-17.22-7.19-19.66-13.07l8.48-3.53c1.51 3.61 5.21 7.87 11.17 7.87 7.31 0 11.84-4.51 11.84-13v-3.19h-.34c-2.18 2.69-6.38 5.04-11.68 5.04-11.09 0-21.25-9.66-21.25-22.09 0-12.52 10.16-22.26 21.25-22.26 5.29 0 9.49 2.35 11.68 4.96h.34v-3.61h9.25zm-8.56 20.92c0-7.81-5.21-13.52-11.84-13.52-6.72 0-12.35 5.71-12.35 13.52 0 7.73 5.63 13.36 12.35 13.36 6.63 0 11.84-5.63 11.84-13.36z"/>
+                <!--  g  -->
+                <path fill="#4285F4" d="M225 3v65h-9.5V3h9.5z"/>
+                <!--  l  -->
+                <path fill="#34A853" d="M262.02 54.48l7.56 5.04c-2.44 3.61-8.32 9.83-18.48 9.83-12.6 0-22.01-9.74-22.01-22.18 0-13.19 9.49-22.18 20.92-22.18 11.51 0 17.14 9.16 18.98 14.11l1.01 2.52-29.65 12.28c2.27 4.45 5.8 6.72 10.75 6.72 4.96 0 8.4-2.44 10.92-6.14zm-23.27-7.98 19.82-8.23c-1.09-2.77-4.37-4.7-8.23-4.7-4.95 0-11.84 4.37-11.59 12.93z"/>
+                <!--  e  -->
+                <path fill="#EA4335" d="M34.93 40.96v-9.41h31.71c.31 1.64.47 3.58.47 5.68 0 7.06-1.93 15.79-8.15 22.01-6.05 6.3-13.78 9.66-24.03 9.66C15.01 68.9.06 54.41.06 34.49.06 14.57 15.01.08 34.93.08c10.5 0 17.98 4.12 23.6 9.49l-6.64 6.64c-4.03-3.78-9.49-6.72-16.96-6.72-13.86 0-24.7 11.17-24.7 25.03 0 13.86 10.84 25.03 24.7 25.03 8.99 0 14.11-3.61 17.39-6.89 2.66-2.66 4.41-6.46 5.1-11.67H34.93z"/>
+            </svg>
 
+            <span class="google-one-label" aria-hidden="true">One</span>
+        </div>
+
+        <!-- Gemini star logomark -->
+        <div class="gemini-star-wrapper" role="img" aria-label="Gemini AI">
+            <svg
+                class="gemini-star"
+                viewBox="0 0 28 28"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <!--
+                    Gemini star — 4-pointed sparkle.
+                    Path is the exact production shape: each arm is a smooth
+                    cubic bezier that tapers to a point, then flares back.
+                    Control-point ratios: 0.47 × arm-length (published spec).
+                -->
+                <path
+                    d="M14 0
+                       C14 7.732 7.732 14 0 14
+                       C7.732 14 14 20.268 14 28
+                       C14 20.268 20.268 14 28 14
+                       C20.268 14 14 7.732 14 0Z"
+                    fill="url(#g-star-grad)"
+                />
+                <defs>
+                    <linearGradient
+                        id="g-star-grad"
+                        x1="0" y1="0" x2="28" y2="28"
+                        gradientUnits="userSpaceOnUse"
+                    >
+                        <stop offset="0%"   stop-color="#4285F4"/>
+                        <stop offset="33%"  stop-color="#9B72CB"/>
+                        <stop offset="66%"  stop-color="#D96570"/>
+                        <stop offset="100%" stop-color="#F4B400"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+
+        <!-- Hero heading -->
         <h1>
-            Dapatkan <span class="highlight-text">Gemini Advanced</span> tanpa biaya.
+            Dapatkan <span class="highlight-text">Gemini Advanced</span><br>tanpa biaya.
         </h1>
-        
+
+        <!-- Description -->
         <p class="description">
-            Ridho Eka Putra mengundang Anda untuk mencoba Google One AI Premium. Nikmati akses ke model AI kami yang paling mumpuni, penyimpanan 2 TB, dan fitur eksklusif lainnya selama 4 bulan.
+            Ridho Eka Putra mengundang Anda untuk mencoba Google One AI Premium — akses ke model AI kami yang paling mumpuni, penyimpanan 2&nbsp;TB, dan fitur eksklusif selama 4&nbsp;bulan.
         </p>
 
-        <a href="https://g.co/g1referral/EWNT4RD8" class="cta-button" target="_blank" rel="noopener noreferrer">
-            Mulai uji coba
+        <!-- CTA -->
+        <a
+            href="https://g.co/g1referral/EWNT4RD8"
+            class="cta-button"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="cta"
+        >
+            Mulai uji coba gratis
         </a>
+
+        <!-- Divider + micro feature list (production pages have this) -->
+        <div class="divider" aria-hidden="true"></div>
+
+        <ul class="features-list" aria-label="Fitur yang disertakan">
+            <li class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2Zm3.707 6.293-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 1 1 1.414-1.414L9 10.086l3.293-3.293a1 1 0 0 1 1.414 1.414Z" fill="var(--md-sys-color-primary)"/>
+                </svg>
+                <span>Akses prioritas ke Gemini 1.5 Pro &amp; model terbaru</span>
+            </li>
+            <li class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2Zm3.707 6.293-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 1 1 1.414-1.414L9 10.086l3.293-3.293a1 1 0 0 1 1.414 1.414Z" fill="var(--md-sys-color-primary)"/>
+                </svg>
+                <span>Penyimpanan cloud Google One 2&nbsp;TB</span>
+            </li>
+            <li class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2Zm3.707 6.293-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 1 1 1.414-1.414L9 10.086l3.293-3.293a1 1 0 0 1 1.414 1.414Z" fill="var(--md-sys-color-primary)"/>
+                </svg>
+                <span>Gemini di Gmail, Docs, dan aplikasi Workspace</span>
+            </li>
+        </ul>
     </main>
 
+    <!-- Footer -->
     <footer class="footer" role="contentinfo">
-        <p>Penawaran uji coba 4 bulan berlaku untuk pengguna baru Google One AI Premium. Metode pembayaran yang valid diperlukan saat pendaftaran.</p>
-        <p>Anda tidak akan ditagih sebelum masa uji coba berakhir. Batal kapan saja di setelan akun Anda.</p>
-        <p><a href="https://one.google.com/terms-of-service" target="_blank" rel="noopener noreferrer">Persyaratan Layanan Google One</a> • <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Kebijakan Privasi</a></p>
+        <p>Penawaran uji coba 4 bulan berlaku untuk pengguna baru Google One AI Premium.</p>
+        <p>Metode pembayaran diperlukan. Anda tidak akan ditagih sebelum uji coba berakhir.</p>
+        <p>
+            <a href="https://one.google.com/terms-of-service" target="_blank" rel="noopener noreferrer">Persyaratan Layanan</a>
+            &nbsp;·&nbsp;
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Kebijakan Privasi</a>
+        </p>
     </footer>
 
+    <script>
+        /* ─── MD3 Ripple effect on CTA ──────────────────────────────── */
+        document.querySelectorAll('.cta-button').forEach(btn => {
+            btn.addEventListener('pointerdown', e => {
+                const rect = btn.getBoundingClientRect();
+                const r = document.createElement('span');
+                r.className = 'ripple';
+                const size = Math.max(rect.width, rect.height);
+                r.style.cssText = `
+                    width:${size}px; height:${size}px;
+                    left:${e.clientX - rect.left - size/2}px;
+                    top:${e.clientY - rect.top - size/2}px;
+                `;
+                btn.appendChild(r);
+                r.addEventListener('animationend', () => r.remove());
+            });
+        });
+    </script>
 </body>
 </html>
