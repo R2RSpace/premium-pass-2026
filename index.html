@@ -7,13 +7,12 @@
     
     <meta property="og:title" content="Undangan: 4 Bulan Gemini Advanced Gratis">
     <meta property="og:description" content="Ridho Eka Putra mengundang Anda untuk mencoba model AI tercanggih dari Google tanpa biaya.">
-    <meta property="og:image" content="https://www.gstatic.com/images/branding/product/2x/google_one_96dp.png">
     <meta name="theme-color" content="#f3f6fc" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#131314" media="(prefers-color-scheme: dark)">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -26,6 +25,7 @@
             --border-color: #e0e0e0;
             --badge-bg: #e8f0fe;
             --badge-text: #1967d2;
+            --logo-text: #5f6368;
             --focus-ring: rgba(11, 87, 208, 0.4);
         }
 
@@ -40,87 +40,83 @@
                 --border-color: #444746;
                 --badge-bg: #004a77;
                 --badge-text: #c2e7ff;
+                --logo-text: #e3e3e3;
                 --focus-ring: rgba(168, 199, 250, 0.4);
             }
         }
 
-        /* 1. LAYOUT FIX: Menggunakan svh dan sistem Grid untuk distribusi ruang vertikal yang aman */
         body {
             font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
             margin: 0;
-            /* clamp(min, ideal, max) membuat padding responsif */
-            padding: clamp(24px, 5vh, 60px) 16px; 
+            padding: 0;
             background-color: var(--google-surface);
             color: var(--text-primary);
-            display: grid;
-            grid-template-rows: 1fr auto;
-            min-height: 100svh; /* svh memperhitungkan UI peramban mobile */
-            place-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Memastikan konten selalu di tengah vertikal */
+            align-items: center;
+            min-height: 100svh; /* Menggunakan ukuran viewport aktual */
             box-sizing: border-box;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            padding: 16px; /* Ruang aman agar tidak menempel ke tepi HP */
         }
 
-        /* 2. LAYOUT FIX: Card yang benar-benar fluid (cair) */
+        /* Container Card yang dioptimalkan untuk layar sempit */
         .card-container {
             background-color: var(--card-bg);
-            border-radius: 28px;
+            border-radius: 24px;
             width: 100%;
-            max-width: 440px;
-            /* Padding dalam card menyusut di layar HP kecil */
-            padding: clamp(24px, 8vw, 40px); 
+            max-width: 400px; /* Dipersempit agar proporsional di Desktop/Mobile */
+            padding: 32px 24px; /* Padding statis yang aman untuk HP modern */
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             border: 1px solid var(--border-color);
             box-sizing: border-box;
-            align-self: end; /* Mendorong card sedikit ke tengah-bawah di layar besar */
-            margin-bottom: clamp(32px, 6vh, 48px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* 3. LAYOUT FIX: Pencegahan Overflow teks pada Badge */
         .referrer-badge {
             display: inline-flex;
-            align-items: center;
-            justify-content: center;
             background-color: var(--badge-bg);
             color: var(--badge-text);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 13px;
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-size: 12px;
             font-weight: 500;
-            margin-bottom: clamp(20px, 4vw, 28px);
-            letter-spacing: 0.2px;
-            width: 100%; /* Badge tidak akan menembus lebar card */
-            max-width: max-content;
-            box-sizing: border-box;
-            word-wrap: break-word; /* Teks patah ke bawah jika terlalu panjang */
-            line-height: 1.4;
+            margin-bottom: 24px;
+            letter-spacing: 0.1px;
+            text-align: center;
         }
 
-        .logo-section img {
-            height: clamp(28px, 6vw, 36px);
-            margin-bottom: clamp(20px, 5vw, 28px);
+        /* SVG Inline Anti-Gagal untuk Google One */
+        .google-logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 24px;
         }
 
+        /* Perbaikan ekstrim SVG Gemini: Tanpa Transform, ViewBox akurat */
         .gemini-logo {
-            width: clamp(48px, 12vw, 64px);
-            height: clamp(48px, 12vw, 64px);
-            margin: 0 auto clamp(16px, 4vw, 24px) auto;
-            animation: pulse 3s infinite alternate;
+            width: 56px;
+            height: 56px;
+            margin-bottom: 16px;
+            animation: pulse 2.5s infinite alternate ease-in-out;
         }
 
         @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.9; }
+            0% { transform: scale(0.95); opacity: 0.85; }
             100% { transform: scale(1.05); opacity: 1; }
         }
 
         h1 {
             font-weight: 400;
-            /* Ukuran font fluid: mengecil di HP, membesar di Desktop */
-            font-size: clamp(24px, 6vw, 32px); 
-            line-height: 1.25;
-            margin: 0 0 16px 0;
-            letter-spacing: -0.5px;
-            overflow-wrap: break-word; /* Mencegah kata panjang merusak margin */
+            font-size: 26px; /* Diperkecil agar teks tidak berantakan di layar sempit */
+            line-height: 1.3;
+            margin: 0 0 12px 0;
+            letter-spacing: -0.2px;
         }
 
         .highlight-text {
@@ -128,14 +124,14 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 500;
-            color: #9b72cb; 
         }
 
         .description {
-            font-size: clamp(14px, 4vw, 16px);
+            font-size: 14px; /* Ukuran baca standar mobile UI */
             line-height: 1.5;
             color: var(--text-secondary);
-            margin-bottom: clamp(24px, 6vw, 32px);
+            margin-bottom: 28px;
+            padding: 0 4px; /* Sedikit bernapas di kanan-kiri */
         }
 
         .cta-button {
@@ -143,46 +139,35 @@
             align-items: center;
             justify-content: center;
             background-color: var(--google-blue);
-            color: var(--card-bg);
-            padding: 10px 24px;
-            height: 48px;
-            border-radius: 24px;
+            color: var(--google-surface); /* Menyesuaikan dengan latar belakang body */
+            height: 44px; /* Standar target sentuh jari jempol */
+            border-radius: 22px;
             text-decoration: none;
             font-weight: 500;
             font-size: 14px;
-            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
             border: none;
             cursor: pointer;
             width: 100%;
             box-sizing: border-box;
-            outline: none;
-            /* Mencegah tombol menyusut aneh di flex/grid ekstrim */
-            flex-shrink: 0; 
+            transition: background-color 0.2s;
         }
 
         .cta-button:hover {
             background-color: var(--button-hover);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-        }
-
-        .cta-button:focus-visible, a:focus-visible {
-            box-shadow: 0 0 0 4px var(--focus-ring);
         }
 
         .footer {
             width: 100%;
-            max-width: 440px;
+            max-width: 400px;
             text-align: center;
-            font-size: 12px;
+            font-size: 11px; /* Diperkecil sedikit agar tidak memakan ruang tinggi */
             color: var(--text-secondary);
-            line-height: 1.5;
-            align-self: start;
+            line-height: 1.4;
+            margin-top: 24px;
         }
 
-        .footer p { margin: 8px 0; }
+        .footer p { margin: 6px 0; }
         .footer a { color: var(--google-blue); text-decoration: none; }
-        .footer a:hover { text-decoration: underline; }
-
     </style>
 </head>
 <body>
@@ -192,14 +177,22 @@
             Undangan spesial dari Ridho Eka Putra
         </div>
 
-        <div class="logo-section">
-            <img src="https://www.gstatic.com/images/branding/product/2x/google_one_96dp.png" alt="Logo Google One">
+        <div class="google-logo-wrapper">
+            <svg viewBox="0 0 74 24" height="24" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#4285F4" d="M9.4 18.6c-5.2 0-9.4-4.2-9.4-9.4S4.2-.2 9.4-.2c2.8 0 4.9 1.1 6.6 2.6l-1.9 1.9c-1.1-1.1-2.8-1.9-4.6-1.9-3.6 0-6.6 3.1-6.6 6.8s3 6.8 6.6 6.8c4.2 0 5.9-2.8 6.2-4.3H9.4v-2.7h8.8c.1.5.2 1.1.2 1.6 0 4.7-3.2 8-9 8z"/>
+                <path fill="#EA4335" d="M24.3 18.6c-4.9 0-8.7-3.7-8.7-8.5S19.4 1.6 24.3 1.6s8.7 3.7 8.7 8.5-3.8 8.5-8.7 8.5zm0-2.7c2.9 0 5.4-2.4 5.4-5.8s-2.5-5.8-5.4-5.8-5.4 2.4-5.4 5.8 2.5 5.8 5.4 5.8z"/>
+                <path fill="#FBBC05" d="M43.2 18.6c-4.9 0-8.7-3.7-8.7-8.5S38.3 1.6 43.2 1.6s8.7 3.7 8.7 8.5-3.8 8.5-8.7 8.5zm0-2.7c2.9 0 5.4-2.4 5.4-5.8s-2.5-5.8-5.4-5.8-5.4 2.4-5.4 5.8 2.5 5.8 5.4 5.8z"/>
+                <path fill="#4285F4" d="M61 2v15.7c0 6.4-3.2 9-6.1 9-3.1 0-4.9-2-5.7-3.7l2.4-1c.5 1.1 1.6 2.2 3.2 2.2 2.1 0 3.4-1.3 3.4-3.8V19.5h-.1c-.9 1.1-2.5 2.1-4.7 2.1-4.5 0-8.3-3.6-8.3-8.5s3.8-8.5 8.3-8.5c2.2 0 3.8 1 4.7 2.1h.1V2h2.7zm-2.5 13.9c2.8 0 5.2-2.5 5.2-5.8s-2.4-5.8-5.2-5.8c-3 0-5.3 2.5-5.3 5.8s2.3 5.8 5.3 5.8z"/>
+                <path fill="#34A853" d="M65.1 18.2V2h2.8v16.2h-2.8z"/>
+                <path fill="#EA4335" d="M75.1 16l2.3 1.5c-.7 1.1-2.5 2.8-5.5 2.8-4.8 0-8.5-3.7-8.5-8.5S67 3.3 71.5 3.3c3.6 0 5.9 2 6.7 3.2l.8 1.2-9.2 3.8c.7 1.5 1.9 2.2 3.6 2.2 1.7 0 2.8-.8 3.3-1.8zm-6.1-4.4l6-2.5c-.3-.7-1.2-1.3-2.3-1.3-1.4 0-3.3 1.1-3.7 3.8z"/>
+            </svg>
+            <span style="font-family: 'Google Sans', sans-serif; font-size: 18px; color: var(--logo-text); font-weight: 500;">One</span>
         </div>
 
-        <svg class="gemini-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animasi logo bintang Gemini">
-            <path d="M11.9998 24C11.9998 24 11.5367 15.6888 5.47462 9.62673C-0.587428 3.56469 0 3.56469 0 3.56469C0 3.56469 8.31118 4.02781 14.3732 10.0899C20.4353 16.1519 19.8478 16.1519 19.8478 16.1519C19.8478 16.1519 20.311 24.463 26.373 30.5251C32.4351 36.5871 31.8476 36.5871 31.8476 36.5871C31.8476 36.5871 23.5365 36.124 17.4744 30.0619C11.4124 24 11.9998 24 11.9998 24Z" fill="url(#gemini-gradient)" transform="scale(0.5) translate(8, 8)"/>
+        <svg class="gemini-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo Bintang Gemini">
+            <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z" fill="url(#gemini-gradient)"/>
             <defs>
-                <linearGradient id="gemini-gradient" x1="0" y1="0" x2="31.8476" y2="36.5871" gradientUnits="userSpaceOnUse">
+                <linearGradient id="gemini-gradient" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
                     <stop stop-color="#4285F4"/>
                     <stop offset="0.33" stop-color="#9B72CB"/>
                     <stop offset="0.66" stop-color="#D96570"/>
