@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Undangan Eksklusif Google One AI Premium</title>
     
     <meta property="og:title" content="Undangan: 4 Bulan Gemini Advanced Gratis">
@@ -16,7 +16,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
-        /* Light Theme (Default Material 3) */
         :root {
             --google-blue: #0b57d0;
             --button-hover: #0842a0;
@@ -30,7 +29,6 @@
             --focus-ring: rgba(11, 87, 208, 0.4);
         }
 
-        /* Dark Theme (Material 3 Dark) */
         @media (prefers-color-scheme: dark) {
             :root {
                 --google-blue: #a8c7fa;
@@ -46,55 +44,67 @@
             }
         }
 
+        /* 1. LAYOUT FIX: Menggunakan svh dan sistem Grid untuk distribusi ruang vertikal yang aman */
         body {
             font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            /* clamp(min, ideal, max) membuat padding responsif */
+            padding: clamp(24px, 5vh, 60px) 16px; 
             background-color: var(--google-surface);
             color: var(--text-primary);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            align-items: center;
+            display: grid;
+            grid-template-rows: 1fr auto;
+            min-height: 100svh; /* svh memperhitungkan UI peramban mobile */
+            place-items: center;
+            box-sizing: border-box;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
+        /* 2. LAYOUT FIX: Card yang benar-benar fluid (cair) */
         .card-container {
             background-color: var(--card-bg);
             border-radius: 28px;
+            width: 100%;
             max-width: 440px;
-            width: 85%;
-            margin: 60px 20px 40px 20px;
-            padding: 40px;
+            /* Padding dalam card menyusut di layar HP kecil */
+            padding: clamp(24px, 8vw, 40px); 
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             border: 1px solid var(--border-color);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+            box-sizing: border-box;
+            align-self: end; /* Mendorong card sedikit ke tengah-bawah di layar besar */
+            margin-bottom: clamp(32px, 6vh, 48px);
         }
 
+        /* 3. LAYOUT FIX: Pencegahan Overflow teks pada Badge */
         .referrer-badge {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             background-color: var(--badge-bg);
             color: var(--badge-text);
-            padding: 6px 16px;
-            border-radius: 16px;
+            padding: 8px 16px;
+            border-radius: 20px;
             font-size: 13px;
             font-weight: 500;
-            margin-bottom: 24px;
+            margin-bottom: clamp(20px, 4vw, 28px);
             letter-spacing: 0.2px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            width: 100%; /* Badge tidak akan menembus lebar card */
+            max-width: max-content;
+            box-sizing: border-box;
+            word-wrap: break-word; /* Teks patah ke bawah jika terlalu panjang */
+            line-height: 1.4;
         }
 
         .logo-section img {
-            height: 36px;
-            margin-bottom: 28px;
+            height: clamp(28px, 6vw, 36px);
+            margin-bottom: clamp(20px, 5vw, 28px);
         }
 
         .gemini-logo {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 20px auto;
+            width: clamp(48px, 12vw, 64px);
+            height: clamp(48px, 12vw, 64px);
+            margin: 0 auto clamp(16px, 4vw, 24px) auto;
             animation: pulse 3s infinite alternate;
         }
 
@@ -105,10 +115,12 @@
 
         h1 {
             font-weight: 400;
-            font-size: 32px;
-            line-height: 40px;
+            /* Ukuran font fluid: mengecil di HP, membesar di Desktop */
+            font-size: clamp(24px, 6vw, 32px); 
+            line-height: 1.25;
             margin: 0 0 16px 0;
             letter-spacing: -0.5px;
+            overflow-wrap: break-word; /* Mencegah kata panjang merusak margin */
         }
 
         .highlight-text {
@@ -116,15 +128,14 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 500;
-            /* Memastikan teks tetap terbaca jika gradient gagal dimuat */
             color: #9b72cb; 
         }
 
         .description {
-            font-size: 16px;
-            line-height: 24px;
+            font-size: clamp(14px, 4vw, 16px);
+            line-height: 1.5;
             color: var(--text-secondary);
-            margin-bottom: 32px;
+            margin-bottom: clamp(24px, 6vw, 32px);
         }
 
         .cta-button {
@@ -132,20 +143,21 @@
             align-items: center;
             justify-content: center;
             background-color: var(--google-blue);
-            color: var(--card-bg); /* Berubah dinamis saat dark mode */
-            padding: 10px 32px;
+            color: var(--card-bg);
+            padding: 10px 24px;
             height: 48px;
             border-radius: 24px;
             text-decoration: none;
             font-weight: 500;
             font-size: 14px;
-            letter-spacing: 0.1px;
             transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
             border: none;
             cursor: pointer;
             width: 100%;
             box-sizing: border-box;
             outline: none;
+            /* Mencegah tombol menyusut aneh di flex/grid ekstrim */
+            flex-shrink: 0; 
         }
 
         .cta-button:hover {
@@ -153,20 +165,18 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
         }
 
-        /* Standar Aksesibilitas (a11y) untuk Keyboard Navigation */
         .cta-button:focus-visible, a:focus-visible {
             box-shadow: 0 0 0 4px var(--focus-ring);
         }
 
         .footer {
+            width: 100%;
             max-width: 440px;
-            width: 85%;
-            margin-top: auto;
-            padding-bottom: 40px;
             text-align: center;
             font-size: 12px;
             color: var(--text-secondary);
             line-height: 1.5;
+            align-self: start;
         }
 
         .footer p { margin: 8px 0; }
