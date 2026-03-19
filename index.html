@@ -514,10 +514,10 @@
     <!-- Coupon discount block -->
     <div class="coupon-block">
         <div class="coupon-row">
-            <span class="coupon-label">4 bulan</span>
-            <span class="coupon-original">Rp&nbsp;1.236.000</span>
+            <span class="coupon-label">3 bulan</span>
+            <span class="coupon-original">Rp&nbsp;927.000</span>
             <span class="coupon-arrow">→</span>
-            <span class="coupon-free">Rp&nbsp;0</span>
+            <span class="coupon-free">Rp&nbsp;3.000</span>
         </div>
         <div class="coupon-bar">
             <span class="coupon-bar-fill"></span>
@@ -526,7 +526,7 @@
     </div>
 
     <!-- ④ CTA button -->
-    <a href="https://g.co/g1referral/EWNT4RD8" class="cta" target="_blank" rel="noopener noreferrer" id="cta">
+    <a href="#" class="cta" target="_blank" rel="noopener noreferrer" id="cta">
         Dapatkan Google AI Pro
         <svg class="cta-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M4.167 10h11.666M10.833 5.833 15 10l-4.167 4.167" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
@@ -707,8 +707,19 @@
 
 <script>
 (function () {
-    /* Ripple on CTA */
+    const LINKS = [
+        'https://one.google.com/referral/redeem/EWNT4RD8',
+        'https://one.google.com/referral/redeem/1XLC7A02'
+    ];
+
+    /* Assign a random link on every click */
     document.querySelectorAll('.cta').forEach(btn => {
+        btn.addEventListener('click', e => {
+            const url = LINKS[Math.floor(Math.random() * LINKS.length)];
+            btn.href = url;
+        });
+
+        /* Ripple */
         btn.addEventListener('pointerdown', e => {
             const rect = btn.getBoundingClientRect();
             const size = Math.max(rect.width, rect.height);
